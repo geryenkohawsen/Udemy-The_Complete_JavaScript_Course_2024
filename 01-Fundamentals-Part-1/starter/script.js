@@ -122,6 +122,7 @@ console.log(ageJonas, ageSarah, averageAge);
 // § Data 2: Marks weights 95 kg and is 1.88 m tall. John weights 85 kg and is 1.76
 // m tall.
 
+/*
 const markWeight1 = 78;
 const markHeight1 = 1.69;
 const markWeight2 = 95;
@@ -140,3 +141,28 @@ const markHigherBMI1 = markBMI1 > johnBMI1;
 const markHigherBMI2 = markBMI2 > johnBMI2;
 
 console.log(markHigherBMI1, markHigherBMI2);
+*/
+
+const firstName = 'Jonas';
+const job = 'teacher';
+const birthYear = 1991;
+const year = 2037;
+
+const jonas =
+  "I'm " + firstName + ', a ' + (year - birthYear) + ' year old ' + job + '!';
+console.log(jonas);
+
+const jonasNew = `I'm ${firstName}, a ${year - birthYear} year old ${job}!`;
+console.log(jonasNew);
+
+console.log(`Just a regular string...`);
+
+console.log(
+  'String with \n\
+multiple \n\
+lines'
+);
+
+console.log(`String
+multiple
+lines`);
