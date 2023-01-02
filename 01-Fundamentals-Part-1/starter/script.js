@@ -429,6 +429,7 @@ if (day === 'monday') {
 }
 */
 
+/*
 3 + 4; // this is an expression
 1991; // this is also an expression
 true && false && !false;
@@ -439,3 +440,20 @@ if (23 > 10) {
 
 const me = 'Gery';
 console.log(`I'm ${2023 - 1999} years old ${me}`);
+*/
+
+const age = 23;
+// age >= 18 ? console.log('I like wine 🍷') : console.log('I prefer water! 💧');
+
+const drink = age >= 18 ? 'wine 🍷' : 'water 💧';
+console.log(drink);
+
+let drink2;
+if (age >= 18) {
+	drink2 = 'wine 🍷';
+} else {
+	drink2 = 'water 💦';
+}
+console.log(drink2);
+
+console.log(`I like to drink ${age >= 18 ? 'wine 🍷' : 'water 💧'}`);
