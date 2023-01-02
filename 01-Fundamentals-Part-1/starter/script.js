@@ -339,6 +339,7 @@ if (hasDriverLicense && hasGoodVision && !isTired) {
 // § Data Bonus 1: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 123
 // § Data Bonus 2: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 106
 
+/*
 const scoreDolphins = (96 + 108 + 89) / 3;
 const scoreKoalas = (88 + 91 + 110) / 3;
 console.log(scoreDolphins, scoreKoalas);
@@ -384,4 +385,44 @@ if (
 	console.log('dolphins won');
 } else if (scoreKoalasB2 > scoreDolphinsB2 && scoreKoalasB2 > 100) {
 	console.log('koalas won');
+}
+*/
+
+const day = 'monday';
+switch (day) {
+	case 'monday': // day === 'monday'
+		console.log('Task1');
+		console.log('Task2');
+		break;
+	case 'tuesday':
+		console.log('Task3');
+		break;
+	case 'wednesday':
+	case 'thursday':
+		console.log('Task 4');
+		break;
+	case 'friday':
+		console.log('TGIF!');
+		break;
+	case 'saturday':
+	case 'sunday':
+		console.log('Enjoy the weekend!');
+		break;
+	default:
+		console.log('Not a valid day...');
+}
+
+if (day === 'monday') {
+	console.log('Task1');
+	console.log('Task2');
+} else if (day === 'tuesday') {
+	console.log('Task3');
+} else if (day === 'wednesday' || day === 'thursday') {
+	console.log('Task 4');
+} else if (day === 'friday') {
+	console.log('TGIF!');
+} else if (day === 'saturday' || day === 'sunday') {
+	console.log('Enjoy the weekend!');
+} else {
+	console.log('Not a valid day...');
 }
