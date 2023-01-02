@@ -196,6 +196,7 @@ console.log(century);
 // 2. Use a template literal to include the BMI values in the outputs. Example: "Mark's
 // BMI (28.3) is higher than John's (23.9)!
 
+/*
 const markWeight1 = 78;
 const markHeight1 = 1.69;
 const markWeight2 = 95;
@@ -226,3 +227,24 @@ if (markHigherBMI2) {
 } else {
   console.log("John's BMI is higher than Mark's!");
 }
+*/
+
+// type conversion
+const inputYear = '1991';
+console.log(Number(inputYear), inputYear, String(123123));
+console.log(Number(inputYear) + 18);
+
+console.log(Number('Jonas '));
+console.log(typeof NaN);
+
+console.log(String(23), 23);
+
+// type coercion
+console.log('I am ' + 23 + ' years old');
+console.log('23' - '10' + 3);
+console.log('23' - '10' - 3);
+console.log('23' / '2');
+
+let n = '1' + 1;
+n = n - 1;
+console.log('n -> ', n);
