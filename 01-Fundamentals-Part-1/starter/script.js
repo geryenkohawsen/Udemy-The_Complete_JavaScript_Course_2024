@@ -388,6 +388,7 @@ if (
 }
 */
 
+/*
 const day = 'monday';
 switch (day) {
 	case 'monday': // day === 'monday'
@@ -426,3 +427,15 @@ if (day === 'monday') {
 } else {
 	console.log('Not a valid day...');
 }
+*/
+
+3 + 4; // this is an expression
+1991; // this is also an expression
+true && false && !false;
+
+if (23 > 10) {
+	const str = '23 is bigger';
+}
+
+const me = 'Gery';
+console.log(`I'm ${2023 - 1999} years old ${me}`);
