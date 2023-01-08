@@ -382,6 +382,7 @@ for (let rep = 1; rep <= 10; rep++) {
 }
 */
 
+/*
 const jonas = [
 	'Jonas',
 	'Schmedtmann',
@@ -393,7 +394,7 @@ const jonas = [
 
 const types = [];
 
-for (let i = 0; jonas.length; i++) {
+for (let i = 0; i < jonas.length; i++) {
 	// Reading from jonas array
 	console.log(jonas[i], typeof jonas[i]);
 
@@ -414,15 +415,36 @@ console.log(ages);
 
 // continue and break
 console.log('--- ONLY STRINGS ---');
-for (let i = 0; jonas.length; i++) {
+for (let i = 0; i < jonas.length; i++) {
 	if (typeof jonas[i] !== 'string') continue;
 
 	console.log(jonas[i], typeof jonas[i]);
 }
 
 console.log('--- BREAK WITH NUMBER ---');
-for (let i = 0; jonas.length; i++) {
+for (let i = 0; i < jonas.length; i++) {
 	if (typeof jonas[i] === 'number') break;
 
 	console.log(jonas[i], typeof jonas[i]);
+}
+*/
+
+const jonas = [
+	'Jonas',
+	'Schmedtmann',
+	2037 - 1991,
+	'teacher',
+	['Michael', 'Peter', 'Steven'],
+];
+
+for (let i = jonas.length - 1; i >= 0; i--) {
+	console.log(i, jonas[i]);
+}
+
+for (let exercise = 1; exercise < 4; exercise++) {
+	console.log(`--- Starting Exercise ${exercise} ---`);
+
+	for (let rep = 1; rep < 6; rep++) {
+		console.log(`Exercise ${exercise}: Lifting weight #${rep}`);
+	}
 }
