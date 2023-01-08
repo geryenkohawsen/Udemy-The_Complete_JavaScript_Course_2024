@@ -429,6 +429,7 @@ for (let i = 0; i < jonas.length; i++) {
 }
 */
 
+/*
 const jonas = [
 	'Jonas',
 	'Schmedtmann',
@@ -447,4 +448,20 @@ for (let exercise = 1; exercise < 4; exercise++) {
 	for (let rep = 1; rep < 6; rep++) {
 		console.log(`Exercise ${exercise}: Lifting weight #${rep}`);
 	}
+}
+*/
+
+let rep = 1;
+while (rep <= 10) {
+	// console.log(`WHILE: Lifting weights repetition ${rep}`);
+	rep++;
+}
+console.log(rep);
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+
+while (dice !== 6) {
+	console.log(`You rolled a ${dice}`);
+	dice = Math.trunc(Math.random() * 6) + 1;
+	if (dice === 6) console.log('Loop will end...');
 }
