@@ -86,6 +86,7 @@ console.log(x === window.y);
 console.log(x === window.z);
 */
 
+/*
 // console.log(this);
 
 const calcAge = function (birthYear) {
@@ -120,3 +121,43 @@ matilda.calcAge();
 
 const f = jonas.calcAge;
 f();
+*/
+
+const jonas = {
+  firstName: 'Gery',
+  year: 1991,
+  calcAge: function () {
+    // console.log(this);
+    console.log(2037 - this.year);
+
+    // Solution 1
+    // const self = this; // self or that
+    // const isMillenial = function () {
+    //   console.log(self);
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    // };
+
+    // Solution 2
+    const isMillenial = () => {
+      console.log(self);
+      console.log(self.year >= 1981 && self.year <= 1996);
+    };
+    isMillenial();
+  },
+  thisIs: this,
+  greet: () => console.log(`Hey ${this.firstName}`),
+};
+jonas.greet();
+jonas.calcAge();
+
+// arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+};
+addExpr(2, 5);
+addExpr(2, 5, 8, 12);
+
+var addArrow = (a, b) => {
+  console.log(arguments);
+};
+addArrow(2, 5, 8);
