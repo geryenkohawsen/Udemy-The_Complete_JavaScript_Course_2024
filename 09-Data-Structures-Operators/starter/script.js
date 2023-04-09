@@ -41,8 +41,61 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your pasta with ${ing1}, ${ing2}, and ${ing3}`);
+  },
 };
 
+const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(' bad example --> ', badNewArr);
+
+const newArr = [1, 2, ...arr];
+console.log(' spread operator --> ', newArr);
+
+console.log(' --> ', ...newArr);
+
+const newMenu = [...restaurant.mainMenu, 'Gnocchi']; // this is a completely new array
+console.log(' --> ', newMenu);
+
+// COPY ARRAY
+const mainMenuCopy = [...restaurant.mainMenu];
+console.log('mainMenuCopy --> ', mainMenuCopy);
+
+// JOIN 2 ARRAYS
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log('allMenu --> ', menu);
+
+// ITERABLES (arrays, strings, map, sets, NOT object)
+const str = 'Gery';
+const letters = [...str, '', 'Haw.'];
+console.log(' --> ', letters);
+console.log(' --> ', ...letters);
+// console.log(`${...letters} test`);
+
+const ingredients = [
+  prompt("Let's make pasta! Ingredient 1?"),
+  prompt('Ingredient 2?'),
+  prompt('Ingredient 3?'),
+];
+
+restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+restaurant.orderPasta(...ingredients);
+
+// OBJECTS
+const newRestaurant = {
+  foundingYear: 1998,
+  ...restaurant,
+  founder: 'Gery',
+};
+console.log('newRestaurant --> ', newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'New Restaurant';
+console.log('copy --> ', restaurantCopy.name);
+console.log('original --> ', restaurant.name);
+
+/*
 restaurant.orderDelivery({
   time: '22:30',
   address: '123 street',
@@ -81,6 +134,7 @@ const {
   fri: { open: o, close: c },
 } = openingHours;
 console.log(' --> ', o, c);
+*/
 
 /*
 const arr = [2, 3, 4];
