@@ -123,6 +123,7 @@ const f = jonas.calcAge;
 f();
 */
 
+/*
 const jonas = {
   firstName: 'Gery',
   year: 1991,
@@ -161,3 +162,39 @@ var addArrow = (a, b) => {
   console.log(arguments);
 };
 addArrow(2, 5, 8);
+*/
+
+// Primitive types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName, oldLastName);
+
+// Reference types
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+console.log(jessica);
+console.log(marriedJessica);
+
+// Copying object
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alive', 'Bob'],
+};
+
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = 'Davis';
+console.log(jessica2);
+console.log(jessicaCopy);
+
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+console.log(jessica2); // jessica2.family will also be updated because this is not a DEEP CLONE
+console.log(jessicaCopy);
