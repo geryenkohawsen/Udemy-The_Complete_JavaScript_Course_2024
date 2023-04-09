@@ -12,10 +12,6 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  order: function (starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
-
   openingHours: {
     thu: {
       open: 12,
@@ -30,8 +26,63 @@ const restaurant = {
       close: 24,
     },
   },
+
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
 };
 
+restaurant.orderDelivery({
+  time: '22:30',
+  address: '123 street',
+  mainIndex: 2,
+  starterIndex: 2,
+});
+
+restaurant.orderDelivery({
+  address: '123 street',
+  starterIndex: 3,
+});
+
+const { name, categories, openingHours } = restaurant;
+console.log(' --> ', name, categories, openingHours);
+
+const {
+  name: restaurantName,
+  categories: hours,
+  openingHours: tags,
+} = restaurant;
+console.log(' --> ', restaurantName, hours, tags);
+
+// DEFAULT VALUES
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log('default value --> ', menu, starters);
+
+// MUTATING VARIABLES
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+({ a, b } = obj);
+console.log(' --> ', a, b);
+
+// NESTED OBJECTS
+const {
+  fri: { open: o, close: c },
+} = openingHours;
+console.log(' --> ', o, c);
+
+/*
 const arr = [2, 3, 4];
 const a = arr[0];
 const b = arr[1];
@@ -71,3 +122,4 @@ const [p, q, r] = [8, 9];
 console.log(' --> ', p, q, r);
 const [e = 1, f = 1, g = 1] = [8, 9];
 console.log(' --> ', e, f, g);
+*/
