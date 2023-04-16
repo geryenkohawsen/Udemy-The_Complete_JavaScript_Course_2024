@@ -51,6 +51,16 @@ const restaurant = {
   },
 };
 
+restaurant.numGuests = 0;
+// truthy falsy
+const guests = restaurant.numGuests || 10;
+console.log('logical OR operator --> ', guests);
+
+// Nullish: null and undefined ONLY (NOT 0 or '')
+const guestsCorrect = restaurant.numGuests ?? 10;
+console.log('nullish coalescing --> ', guestsCorrect);
+
+/*
 // use ANY data type, return ANY data type, short-circuiting
 console.log(' num x str --> ', 3 || 'Gery');
 console.log(' empty str x str --> ', '' || 'Gery');
@@ -77,6 +87,7 @@ if (restaurant.orderPizza) {
 }
 // is same to this one
 restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spinach');
+*/
 
 /*
 // SPREAD, because on the RIGHT side of the = sign
