@@ -44,8 +44,50 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your pasta with ${ing1}, ${ing2}, and ${ing3}`);
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log('main --> ', mainIngredient);
+    console.log('other ing --> ', otherIngredients);
+  },
 };
 
+// SPREAD, because on the RIGHT side of the = sign
+const arr = [1, 2, ...[3, 4]];
+
+// REST, because on the LEFT side of the = sign
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(others);
+
+// skipped element, will not be included, that is why the REST PATTERN need to be last
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log('pizza --> ', pizza);
+console.log('risotto --> ', risotto);
+console.log('other food --> ', otherFood);
+
+// REST in objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log('weekdays --> ', weekdays);
+
+// Functions
+const add = function (...numbers) {
+  console.log('numbers --> ', numbers);
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log('Add() result --> ', sum);
+};
+add(2, 3);
+add(11, 5, 3, 9, 12);
+
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('mushroom', 'onion', 'olive', 'spinach');
+/*
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
 console.log(' bad example --> ', badNewArr);
@@ -94,6 +136,7 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = 'New Restaurant';
 console.log('copy --> ', restaurantCopy.name);
 console.log('original --> ', restaurant.name);
+*/
 
 /*
 restaurant.orderDelivery({
