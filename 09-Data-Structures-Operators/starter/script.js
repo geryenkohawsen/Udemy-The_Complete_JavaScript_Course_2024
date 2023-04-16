@@ -51,6 +51,34 @@ const restaurant = {
   },
 };
 
+// use ANY data type, return ANY data type, short-circuiting
+console.log(' num x str --> ', 3 || 'Gery');
+console.log(' empty str x str --> ', '' || 'Gery');
+console.log(' true x zero --> ', true || '0');
+console.log(' undefined x null --> ', undefined || null);
+console.log(' zero x undefined --> ', 0 || undefined);
+console.log('many values --> ', undefined || 0 || '' || 'Hello' || 23 || null);
+
+restaurant.numGuests = 23;
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log('guest --> ', guest1);
+
+// AND Operator
+console.log('--- AND ---');
+console.log(' zero & str --> ', 0 && 'Gery');
+console.log(' num & str --> ', 7 && 'Gery');
+console.log(' many values --> ', 'Hello' && 23 && null && 'Gery');
+
+const guest2 = restaurant.numGuests2 || 10;
+
+// this one
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushroom', 'spinach');
+}
+// is same to this one
+restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spinach');
+
+/*
 // SPREAD, because on the RIGHT side of the = sign
 const arr = [1, 2, ...[3, 4]];
 
@@ -87,6 +115,8 @@ const x = [23, 5, 7];
 add(...x);
 
 restaurant.orderPizza('mushroom', 'onion', 'olive', 'spinach');
+*/
+
 /*
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
