@@ -125,34 +125,47 @@ const game = {
   },
 };
 
-console.log('TASK 1');
+// Task 1
 const [players1, players2, players3] = game.players;
 console.log('p1 --> ', players1);
 console.log('p2 --> ', players2);
 
-console.log('TASK 2');
+// Task 2
 const [gk, ...fieldPlayers] = players1;
 console.log('gk --> ', gk);
 console.log('fp --> ', fieldPlayers);
 
-console.log('TASK 3');
+// Task 3
 const allPlayers = [...players1, ...players2];
 console.log('all players --> ', allPlayers);
 
-console.log('TASK 4');
+// Task 4
 const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 console.log('p1 final --> ', players1Final);
 
-console.log('TASK 5');
-const { team1, x: draw, team2 } = { ...game.odds };
-console.log('team1 odds --> ', team1);
-console.log('draw odds --> ', draw);
-console.log('team2 odds --> ', team2);
+// Task 5
+// const { team1, x: draw, team2 } = { ...game.odds };
+// console.log('team1 odds --> ', team1);
+// console.log('draw odds --> ', draw);
+// console.log('team2 odds --> ', team2);
+// Task 5 ANSWER
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
+console.log('task 5 --> ', team1, draw, team2);
 
-console.log('TASK 6');
-function printGoals() {}
+// Task 6
+function printGoals(...players) {
+  console.log(`${players.length} goals were scored`);
+}
 
-console.log('TASK 7');
+printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+printGoals('Davies', 'Muller');
+printGoals(...game.scored);
+
+// Task 7
+team1 < team2 && console.log('Team 1 is more likely to win');
+team1 > team2 && console.log('Team 2 is more likely to win');
 
 /*
 // OR assignment operator (assign a value to a variable if variable if falsy)
