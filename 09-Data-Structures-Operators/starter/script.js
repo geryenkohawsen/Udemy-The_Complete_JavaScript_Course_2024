@@ -51,6 +51,17 @@ const restaurant = {
   },
 };
 
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log('item --> ', item);
+
+for (const [idx, el] of menu.entries()) {
+  console.log(`${idx + 1}: ${el}`);
+}
+
+console.log('meny.entries() --> ', [...menu.entries()]);
+
+/*
 const rest1 = {
   name: 'Capri',
   // numGuests: 20,
@@ -62,6 +73,7 @@ const rest2 = {
   name: 'La Piazza',
   owner: 'Giovanni Rossi',
 };
+*/
 
 ///////////////////////////////////////
 // Coding Challenge #1
@@ -125,6 +137,7 @@ const game = {
   },
 };
 
+/*
 // Task 1
 const [players1, players2, players3] = game.players;
 console.log('p1 --> ', players1);
@@ -166,6 +179,7 @@ printGoals(...game.scored);
 // Task 7
 team1 < team2 && console.log('Team 1 is more likely to win');
 team1 > team2 && console.log('Team 2 is more likely to win');
+*/
 
 /*
 // OR assignment operator (assign a value to a variable if variable if falsy)
