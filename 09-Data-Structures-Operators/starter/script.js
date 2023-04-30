@@ -20,8 +20,8 @@ const openingHours = {
     close: 24,
   },
   [weekdays[1 + 1]]: {
-    open: 0, // Open 24 hours
-    close: 24,
+    open: 3,
+    close: 18,
   },
 };
 
@@ -55,6 +55,31 @@ const restaurant = {
   },
 };
 
+// property NAMES
+const properties = Object.keys(openingHours);
+console.log('properties --> ', properties);
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+console.log('openStr --> ', openStr);
+
+// property VALUES
+const values = Object.values(openingHours);
+console.log('values --> ', values);
+
+// Entire object
+const entries = Object.entries(openingHours); // different way of calling compared to Array -> numArray.entries() // Object.entries(numArray)
+console.log('entries --> ', entries);
+
+// for (const entry of entries) -> destructure
+// for (const [key, value] of Array)
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+}
+
+/*
 if (restaurant.openingHours && restaurant.openingHours.mon)
   console.log('if statement --> ', restaurant.openingHours.mon.open);
 
@@ -93,6 +118,7 @@ console.log(
   'check if element in array exist or not --> ',
   users[1]?.name ?? 'User array empty'
 );
+/*
 /*
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
