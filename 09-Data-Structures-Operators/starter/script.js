@@ -7,7 +7,7 @@ const flights =
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 const openingHours = {
-  [weekdays[3]]: {
+  [weekdays[1]]: {
     open: 12,
     close: 22,
   },
@@ -15,7 +15,11 @@ const openingHours = {
     open: 11,
     close: 23,
   },
-  [`day-${2 + 4}`]: {
+  [`${weekdays[2 + 3]}`]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+  [weekdays[1 + 1]]: {
     open: 0, // Open 24 hours
     close: 24,
   },
@@ -51,6 +55,44 @@ const restaurant = {
   },
 };
 
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log('if statement --> ', restaurant.openingHours.mon.open);
+
+// console.log('NO if statement --> ', restaurant.openingHours.mon.open);
+
+// WITH optional chaining
+console.log('optional chaining --> ', restaurant.openingHours.mon?.open);
+console.log('optional chaining --> ', restaurant.openingHours?.mon?.open);
+
+// example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// Methods
+console.log(
+  'check if method exist before calling it --> ',
+  restaurant.order?.(3, 2) ?? 'Method does not exist'
+);
+console.log(
+  'check if method exist before calling it --> ',
+  restaurant.orderRisotto?.(0, 2) ?? 'Method does not exist'
+);
+
+//Arrays
+const users = [{ name: 'Jonas', email: 'email1@gmail.com' }];
+
+console.log(
+  'check if element in array exist or not --> ',
+  users[0]?.name ?? 'User array empty'
+);
+console.log(
+  'check if element in array exist or not --> ',
+  users[1]?.name ?? 'User array empty'
+);
 /*
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
