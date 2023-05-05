@@ -55,6 +55,36 @@ const restaurant = {
   },
 };
 
+const rest = new Map(); // easiest way to create a map is by passing an empty map
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal')); // updating the set method like this will return the set itself
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open!')
+  .set(false, 'We are close...');
+
+console.log(rest.get('name'));
+console.log(rest.get(Number('1')));
+
+const time = 23;
+console.log(rest.get(time >= rest.get('open') && time < rest.get('close')));
+
+console.log(rest.has('categories'));
+// rest.clear(); // delete whole map
+console.log(rest.delete(2));
+
+const arr = [1, 2];
+rest.set(arr, 'Test');
+rest.set(document.querySelector('h1'), 'Heading'); // we can also use dumb element (special-type object)
+console.log(rest);
+console.log(rest.size);
+
+console.log(rest.get(arr));
+/*
 const orderSet = new Set([
   'Pasta',
   'Pizza',
@@ -92,6 +122,7 @@ console.log(
 );
 
 console.log(new Set('Gery').size);
+*/
 
 ///////////////////////////////////////
 // Coding Challenge #2
