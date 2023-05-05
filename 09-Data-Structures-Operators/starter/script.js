@@ -55,6 +55,44 @@ const restaurant = {
   },
 };
 
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+console.log(orderSet);
+
+console.log('Set from string --> ', new Set('Gery'));
+
+console.log('get size of a Set --> ', orderSet.size);
+console.log('check if Set has a specific element --> ', orderSet.has('Pizza'));
+console.log('check if Set has a specific element --> ', orderSet.has('Bread'));
+console.log('add a new element to a Set --> ', orderSet.add('Garlic Bread'));
+console.log('add a new element to a Set --> ', orderSet.add('Garlic Bread')); // 'Garlic Bread' will only be added ONCE!
+console.log('delete element from a Set --> ', orderSet.delete('Risotto'));
+// orderSet.clear();
+console.log('FINAL orderSet --> ', orderSet);
+
+for (const order of orderSet) console.log(order);
+
+// Set is commonly use for deleting duplicates from an Array
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// Set is also an iterables so we can DECONSTRUCT them with spread operator
+// const staffUnique = new Set(staff);
+const staffUnique = [...new Set(staff)];
+
+console.log('Set of staff --> ', staffUnique);
+
+// Example when we don't need the entire array but just the number of unique elements
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+);
+
+console.log(new Set('Gery').size);
+
 ///////////////////////////////////////
 // Coding Challenge #2
 
@@ -120,6 +158,7 @@ const game = {
   },
 };
 
+/*
 // TASK 1
 for (const [idx, player] of game.scored.entries()) {
   console.log(`Goal ${idx + 1}: ${player}`);
@@ -144,6 +183,7 @@ for (const player of game.scored) {
   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 }
 console.log('scorers --> ', scorers);
+*/
 
 /*
 // property NAMES
