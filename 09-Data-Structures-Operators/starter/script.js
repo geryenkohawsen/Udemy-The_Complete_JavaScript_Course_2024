@@ -121,32 +121,30 @@ const game = {
 };
 
 // TASK 1
-const scoredArr = Object.entries(game.scored);
-// console.log('scoredArr --> ', scoredArr);
-for (const score of scoredArr) {
-  // console.log('score --> ', score);
-  console.log(`Goal ${Number(score[0]) + 1}: ${score[1]}`);
+for (const [idx, player] of game.scored.entries()) {
+  console.log(`Goal ${idx + 1}: ${player}`);
 }
 
 // TASK 2
+const odds = Object.values(game.odds);
 let oddsAvg = 0;
-for (const odd of Object.values(game.odds)) {
-  // console.log('odd --> ', odd);
-  oddsAvg += odd;
-}
-console.log('Average odds --> ', oddsAvg / Object.entries(game.odds).length);
+for (const odd of Object.values(game.odds)) oddsAvg += odd;
+console.log('Average odds --> ', oddsAvg / odds.length);
 
 // TASK 3
-const oddsArr = Object.entries(game.odds);
-// console.log('oddsArr --> ', oddsArr);
-for (const [team, odd] of oddsArr) {
+for (const [team, odd] of Object.entries(game.odds)) {
   // console.log('team & odd --> ', team, odd);
-  if (team !== 'x') {
-    console.log(`Odd of victory ${game[team]}: ${odd}`);
-  } else {
-    console.log(`Odd of draw: ${odd}`);
-  }
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd of ${teamStr}: ${odd}`);
 }
+
+// BONUS
+const scorers = {};
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+console.log('scorers --> ', scorers);
+
 /*
 // property NAMES
 const properties = Object.keys(openingHours);
