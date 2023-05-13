@@ -42,24 +42,20 @@ document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
 const textareaEl = document.querySelector('textarea');
 const btnEl = document.querySelector('button');
+
 btnEl.addEventListener('click', () => {
-  const textareaVal = textareaEl.value;
-  const textareaValArr = textareaVal.split('\n');
-  for (const [index, val] of Object.entries(textareaValArr)) {
-    const cleanVal = val.trim().toLowerCase();
-    const underscoreIdx = cleanVal.indexOf('_');
-    const combinedVal = cleanVal.split('_').join('');
-    const namesUpper = [];
-    for (const [index, n] of Object.entries(combinedVal)) {
-      if (Number(index) == underscoreIdx) namesUpper.push(n.toUpperCase());
-      else namesUpper.push(n);
-    }
-    console.log(
-      namesUpper
-        .join('')
-        .padEnd(20, ' ')
-        .padEnd(20 + (Number(index) + 1), '✅')
-    );
+  const input = textareaEl.value;
+  const rows = input.split('\n');
+
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.trim().toLowerCase().split('_');
+    const newRow = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    // newRow.padEnd(20, ' ');
+    // we can omit the 2nd parameter if we just want empty spaces
+    console.log(`${newRow.padEnd(20)}${'✅'.repeat(i + 1)}`);
   }
 });
 /*
