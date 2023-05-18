@@ -25,6 +25,8 @@ createBooking('LH345', undefined, 300); // use undefined to skip parameter that 
 createBooking('LH345', 5);
 */
 
+/////////////////////////
+/*
 const flight = 'LH234';
 const gery = {
   name: 'Geryenko Hawsen',
@@ -58,3 +60,34 @@ checkIn(flight, gery);
 
 console.log(flight);
 console.log(gery);
+*/
+
+// Generic function
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+// Generic function
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+// Higher-order function
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+
+  console.log(`Transformed by: ${fn.name}`); // 'name' property of the function
+};
+
+transformer('JavaScript is the best!', upperFirstWord);
+console.log('-------------------------');
+transformer('JavaScript is the best!', oneWord);
+
+// JavaScript callbacks!!
+const high5 = function () {
+  console.log('✋');
+};
+document.body.addEventListener('click', high5);
+[1, 2, 3, 'Gery'].forEach(high5);
