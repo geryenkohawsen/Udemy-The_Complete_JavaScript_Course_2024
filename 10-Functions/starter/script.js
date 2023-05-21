@@ -62,6 +62,8 @@ console.log(flight);
 console.log(gery);
 */
 
+////////////////////
+/*
 // Generic function
 const oneWord = function (str) {
   return str.replace(/ /g, '').toLowerCase();
@@ -91,3 +93,27 @@ const high5 = function () {
 };
 document.body.addEventListener('click', high5);
 [1, 2, 3, 'Gery'].forEach(high5);
+*/
+
+// function returning function
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greeterHey = greet('Hey');
+greeterHey('Jonas');
+greeterHey('Gery');
+
+greet('Hello')('Yamada'); // calling directly the returned function
+
+// arrow function returning arrow function
+const aisatsu =
+  (greeting = 'Hi') =>
+  name => {
+    console.log(`${greeting} ${name}`);
+  };
+
+aisatsu()('Gery');
+aisatsu('Bye')('Gery');
