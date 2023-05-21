@@ -95,6 +95,8 @@ document.body.addEventListener('click', high5);
 [1, 2, 3, 'Gery'].forEach(high5);
 */
 
+/////////////////////////
+/*
 // function returning function
 const greet = function (greeting) {
   return function (name) {
@@ -117,3 +119,61 @@ const aisatsu =
 
 aisatsu()('Gery');
 aisatsu('Bye')('Gery');
+*/
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // book: function () {},
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({
+      flight: `${this.iataCode}${flightNum}`,
+      name,
+    });
+  },
+};
+
+lufthansa.book(239, 'Geryenko Hawsen');
+lufthansa.book(635, 'John Smith');
+console.log('lufthansa --> ', lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+
+// Does NOT work
+// book(23, 'Sarah Williams');
+
+// CALL METHOD
+book.call(eurowings, 23, 'Sarah Williams');
+console.log('eurowings --> ', eurowings);
+
+book.call(lufthansa, 239, 'Mary Cooper');
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Airlines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss, 583, 'Mary Cooper');
+console.log('swiss --> ', swiss);
+
+// APPLY METHOD (Not used in modern JavaScript)
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log('swiss #2 --> ', swiss);
+
+// Better way of doing it
+// Use spread operator!!
+book.call(swiss, ...flightData);
+console.log('swiss #3 --> ', swiss);
