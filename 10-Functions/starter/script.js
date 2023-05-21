@@ -177,3 +177,44 @@ console.log('swiss #2 --> ', swiss);
 // Use spread operator!!
 book.call(swiss, ...flightData);
 console.log('swiss #3 --> ', swiss);
+
+// BIND METHOD
+const bookEW = book.bind(eurowings)
+const bookLH = book.bind(lufthansa)
+const bookLX = book.bind(swiss)
+
+bookEW(23, 'Steven Williams')
+
+const bookEW23 = book.bind(eurowings, 23)
+bookEW23('Geryenko Hawsen')
+bookEW23('Yukimura Sanada')
+
+// With Event Listeners
+lufthansa.planes = 300
+lufthansa.buyPlane = function() {
+  console.log(this);
+  this.planes++
+  console.log('planes → ', this.planes);
+}
+
+// [this] keyword will reference the element of event listener by default
+// we need to manual attach the [this] keyword
+document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa))
+
+// PARTIAL APPLICATION
+const addTax = (rate, value) => value + value * rate
+console.log('addTax → ', addTax(0.1, 200));
+
+// when [this] keyword is not needed, use null (could be any other values)
+const addVAT = addTax.bind(null, 0.23) // addVat = value => value + value * 0.23
+console.log('addVAT → ', addVAT(200));
+console.log('addVAT → ', addVAT(23));
+
+const addTaxRate = function(rate) {
+  return function(value) {
+    return value + value * rate
+  }
+}
+const addVAT2 = addTaxRate(0.23)
+console.log('addVAT2 → ', addVAT2(200));
+console.log('addVAT2 → ', addVAT2(23));
