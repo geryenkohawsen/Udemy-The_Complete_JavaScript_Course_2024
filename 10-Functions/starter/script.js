@@ -122,7 +122,7 @@ aisatsu('Bye')('Gery');
 */
 
 ///////////////////////////////////////
-
+/*
 const lufthansa = {
   airline: 'Lufthansa',
   iataCode: 'LH',
@@ -260,11 +260,18 @@ const poll = {
   question: 'What is your favorite programming language?',
   option: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   answers: new Array(4).fill(0),
+  displayResults(type = 'array') {
+    if (type === 'array') console.log(this.answers);
+    else console.log(`Poll results are ${this.arr}`);
+  },
   registerNewAnswer() {
-    const answer = prompt(`${[this.question, ...this.option].join('\n')}`)
-    this.answers[answer]++
-    console.log('answers → ', this.answers);
+    const answer = prompt(`${[this.question, ...this.option].join('\n')}`);
+    this.answers[answer]++;
+    this.displayResults();
+    this.displayResults('string');
   },
 };
 
-document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll))
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
