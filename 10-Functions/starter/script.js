@@ -260,18 +260,42 @@ const poll = {
   question: 'What is your favorite programming language?',
   option: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   answers: new Array(4).fill(0),
-  displayResults(type = 'array') {
-    if (type === 'array') console.log(this.answers);
-    else console.log(`Poll results are ${this.arr}`);
-  },
   registerNewAnswer() {
-    const answer = prompt(`${[this.question, ...this.option].join('\n')}`);
-    this.answers[answer]++;
+    ///// Get User's answer
+    const answer = Number(
+      prompt(
+        `${[this.question, ...this.option].join('\n')}\n(Write option number)`
+      )
+    );
+
+    ///// Register answer
+    // using IF statement
+    // if (typeof answer === 'number' && answer < this.answers.length) {
+    //   this.answers[answer]++
+    // }
+    // User short circuiting instead
+    typeof answer === 'number' &&
+      answer < this.answers.length &&
+      this.answers[answer]++;
+
+    ///// Display answer result
     this.displayResults();
     this.displayResults('string');
+  },
+  displayResults(type = 'array') {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else if (type === 'string') {
+      console.log(`Poll results are ${this.answers.join(', ')}`);
+    }
   },
 };
 
 document
   .querySelector('.poll')
   .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+poll.displayResults.call({answers: [5, 2, 3]}, 'string')
+poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]})
+// [5, 2, 3]
+// [1, 5, 3, 9, 6, 1]
