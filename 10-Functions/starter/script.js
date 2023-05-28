@@ -337,6 +337,7 @@ console.log(notPrivate);
  * A closure is like a backpack that a function carries around wherever it goes.
  * This backpack has al the variables that were present in the environment where the function was created.
  */
+/*
 const secureBooking = function () {
   let passengerCount = 0;
 
@@ -354,3 +355,46 @@ booker();
 
 // we can't access it directly but we can look at the closure of a function
 console.dir(booker);
+*/
+
+///////////////////////////////////////
+///// Example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+console.dir(f); // closure is 23
+
+// Re-assigning f function
+h();
+f();
+console.dir(f); // closure is 777
+
+///// Example 2
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+const perGroup = 123;
+boardPassengers(180, 3);
