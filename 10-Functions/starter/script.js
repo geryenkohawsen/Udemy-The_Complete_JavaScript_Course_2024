@@ -304,6 +304,8 @@ poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]})
 // [1, 5, 3, 9, 6, 1]
 */
 
+///////////////////////////////////////
+/*
 // normal function
 const runOnce = function () {
   console.log('This will never run again');
@@ -327,3 +329,28 @@ runOnce();
 
 // console.log(isPrivate);
 console.log(notPrivate);
+*/
+
+///////////////////////////////////////
+/**
+ * CLOSURES
+ * A closure is like a backpack that a function carries around wherever it goes.
+ * This backpack has al the variables that were present in the environment where the function was created.
+ */
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+// we can't access it directly but we can look at the closure of a function
+console.dir(booker);
