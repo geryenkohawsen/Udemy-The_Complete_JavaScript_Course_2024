@@ -418,11 +418,16 @@ and what that means for the variables involved in this example.
 GOOD LUCK 😀
 */
 
+/**
+ * Even though the IIFE is executed immediately,
+ * the event listener for the body is created inside the IIFE environment,
+ * which is why the event listener function will remember all of the variables that was available in it birthplace
+ */
 (function () {
   const header = document.querySelector('h1');
   header.style.color = 'red';
 
-  document.body.addEventListener('click', function () {
+  document.querySelector('body').addEventListener('click', function () {
     header.style.color = 'blue';
   });
 })();
