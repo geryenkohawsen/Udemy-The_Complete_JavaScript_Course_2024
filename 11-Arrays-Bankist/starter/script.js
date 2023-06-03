@@ -74,3 +74,51 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+/**
+ * SLICE
+ * slice() DOES NOT mutate the original array
+ */
+console.log('slice(2) --> ', arr.slice(2)); // copy from the 3rd element till the end
+console.log('slice(2, 4)--> ', arr.slice(2, 4)); // copy from the 3rd element and stop BEFORE the 5th element
+console.log('slice(-2) --> ', arr.slice(-2)); // copy two element from the BACK / END of the array
+console.log('slice(-1) --> ', arr.slice(-1)); // copy one element (the last element) of the array
+console.log('slice(1, -2) --> ', arr.slice(1, -2)); // copy from the 2nd element and stop before the 2nd element from the END of the array
+console.log('slice() --> ', arr.slice()); // create a SHALLOW COPY of the array (same as spread operator)
+console.log('...arr --> ', [...arr]); // create a SHALLOW COPY of the array
+
+/**
+ * SPLICE
+ * splice() WILL MUTATE the original array!!
+ */
+// console.log('splice(2) --> ', arr.splice(2)); // same as slice(2) but return the result to the original array
+arr.splice(-1); // delete the last element of the ORIGINAL array
+console.log('CHECK --> ', arr);
+arr.splice(1, 2); // delete 2 elements after the 2nd element in the array
+console.log('CHECK --> ', arr);
+
+/**
+ * REVERSE
+ * reverse the ORIGINAL array (mutation)
+ */
+arr = ['a', 'b', 'c', 'd', 'e'];
+const arr2 = ['j', 'i', 'h', 'g', 'j'];
+console.log(' reverse() --> ', arr2.reverse());
+console.log('CHECK --> ', arr2);
+
+/**
+ * CONCAT
+ * concatenate array and create a new copy (non-mutation)
+ */
+const letters = arr.concat(arr2); // same as using spread operator
+console.log('CHECK --> ', letters);
+console.log('using spread operators --> ', [...arr, ...arr2]);
+
+/**
+ * JOIN
+ * join elements inside an array and create a new copy (non-mutation)
+ */
+console.log('join() --> ', letters.join(' - ')); // same as using spread operator
+console.log('CHECK --> ', letters);
