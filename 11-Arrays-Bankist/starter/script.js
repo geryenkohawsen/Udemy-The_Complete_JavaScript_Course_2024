@@ -221,48 +221,78 @@ TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 GOOD LUCK 😀
 */
 
-const dataJulia1 = [3, 5, 2, 12, 7].slice(1, 3);
-const dataJulia2 = [9, 16, 6, 8, 3].slice(1, 3);
-const dataKate1 = [4, 1, 15, 8, 3];
-const dataKate2 = [10, 5, 6, 1, 4];
+// const dataJulia1 = [3, 5, 2, 12, 7].slice(1, 3);
+// const dataJulia2 = [9, 16, 6, 8, 3].slice(1, 3);
+// const dataKate1 = [4, 1, 15, 8, 3];
+// const dataKate2 = [10, 5, 6, 1, 4];
 
-function checkDogs(arr1, arr2) {
-  const datas = [...arr1, ...arr2];
+// function checkDogs(arr1, arr2) {
+//   const datas = [...arr1, ...arr2];
 
-  datas.forEach((data, i) => {
-    const isAdult = data >= 3 ? 'adult' : 'puppy';
-    console.log(
-      `Dog number ${i + 1} is an ${isAdult}, and is ${data} years old`
-    );
-  });
-}
+//   datas.forEach((data, i) => {
+//     const isAdult = data >= 3 ? 'adult' : 'puppy';
+//     console.log(
+//       `Dog number ${i + 1} is an ${isAdult}, and is ${data} years old`
+//     );
+//   });
+// }
 
-console.log('--- DATA 1 ---');
-checkDogs(dataJulia1, dataKate1);
-console.log('--- DATA 2 ---');
-checkDogs(dataJulia2, dataKate2);
+// console.log('--- DATA 1 ---');
+// checkDogs(dataJulia1, dataKate1);
+// console.log('--- DATA 2 ---');
+// checkDogs(dataJulia2, dataKate2);
+
+// /**
+//  * LECTURE ANSWER
+//  */
+// const checkDogsAns = function (dogsJulia, dogsKate) {
+//   const dogsJuliaCorrected = dogsJulia.slice();
+//   dogsJuliaCorrected.splice(0, 1);
+//   dogsJuliaCorrected.splice(-2);
+
+//   const dogs = dogsJuliaCorrected.concat(dogsKate);
+
+//   dogs.forEach(function (dog, i) {
+//     if (dog >= 3) {
+//       console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old`);
+//     } else {
+//       console.log(`Dog number ${i + 1} is an puppy, and is ${dog} years old`);
+//     }
+//   });
+// };
+
+// console.log('===== ANSWER =====');
+// console.log('--- Answer Data 1 ---');
+// checkDogsAns([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// console.log('--- Answer Data  --- ');
+// checkDogsAns([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+
+/////////////////////////////////////////////////
+const eurToUsd = 1.1;
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /**
- * LECTURE ANSWER
+ * using map() method
  */
-const checkDogsAns = function (dogsJulia, dogsKate) {
-  const dogsJuliaCorrected = dogsJulia.slice();
-  dogsJuliaCorrected.splice(0, 1);
-  dogsJuliaCorrected.splice(-2);
+const movementUSD = movements.map(mov => mov * eurToUsd);
+console.log(movementUSD);
 
-  const dogs = dogsJuliaCorrected.concat(dogsKate);
+/**
+ * using normal for loop
+ */
+const movementsUSDfor = [];
+for (const mov of movements) {
+  movementsUSDfor.push(mov * eurToUsd);
+}
+console.log(movementsUSDfor);
 
-  dogs.forEach(function (dog, i) {
-    if (dog >= 3) {
-      console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old`);
-    } else {
-      console.log(`Dog number ${i + 1} is an puppy, and is ${dog} years old`);
-    }
-  });
-};
+// original array is not mutated
+console.log('original array → ', movements);
 
-console.log('===== ANSWER =====');
-console.log('--- Answer Data 1 ---');
-checkDogsAns([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
-console.log('--- Answer Data 2 --- ');
-checkDogsAns([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+const movementDescriptions = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+console.log(movementDescriptions);
