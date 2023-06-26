@@ -241,3 +241,28 @@ console.log('--- DATA 1 ---');
 checkDogs(dataJulia1, dataKate1);
 console.log('--- DATA 2 ---');
 checkDogs(dataJulia2, dataKate2);
+
+/**
+ * LECTURE ANSWER
+ */
+const checkDogsAns = function (dogsJulia, dogsKate) {
+  const dogsJuliaCorrected = dogsJulia.slice();
+  dogsJuliaCorrected.splice(0, 1);
+  dogsJuliaCorrected.splice(-2);
+
+  const dogs = dogsJuliaCorrected.concat(dogsKate);
+
+  dogs.forEach(function (dog, i) {
+    if (dog >= 3) {
+      console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old`);
+    } else {
+      console.log(`Dog number ${i + 1} is an puppy, and is ${dog} years old`);
+    }
+  });
+};
+
+console.log('===== ANSWER =====');
+console.log('--- Answer Data 1 ---');
+checkDogsAns([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+console.log('--- Answer Data 2 --- ');
+checkDogsAns([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
