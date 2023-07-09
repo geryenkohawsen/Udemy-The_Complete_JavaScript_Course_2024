@@ -385,7 +385,7 @@ const test = [5, 2, 4, 1, 15, 8, 3].map(num => num + 100);
 const calcAverageHumanAge = function (ages) {
   const filteredDogToHumanYears = ages
     .map(dogAge => {
-      if (dogAge < 2) return dogAge * 2;
+      if (dogAge <= 2) return dogAge * 2;
       else return 16 + dogAge * 4;
     })
     .filter(humanAge => humanAge >= 18);
@@ -399,7 +399,7 @@ const calcAverageHumanAge = function (ages) {
 
 const calcAverageHumanAge2 = function (ages) {
   return ages
-    .map(dogAge => (dogAge < 2 ? dogAge * 2 : 16 + dogAge * 4))
+    .map(dogAge => (dogAge <= 2 ? dogAge * 2 : 16 + dogAge * 4))
     .filter(humanAge => humanAge >= 18)
     .reduce((acc, cur, i, arr) => {
       if (i + 1 === arr.length) return (acc + cur) / arr.length;
@@ -411,3 +411,28 @@ console.log('test data 1 → ', calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log('test data 1 → ', calcAverageHumanAge2([5, 2, 4, 1, 15, 8, 3]));
 console.log('test data 2 → ', calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 console.log('test data 2 → ', calcAverageHumanAge2([16, 6, 10, 5, 6, 1, 4]));
+
+/**
+ * LECTURE ANSWER
+ */
+const calcAverageHumanAge3 = function (ages) {
+  const humanAges = ages.map(dogAge =>
+    dogAge <= 2 ? dogAge * 2 : 16 + dogAge * 4
+  );
+  const adults = humanAges.filter(age => age >= 18);
+  console.log(humanAges);
+  console.log(adults);
+
+  // const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  const average = adults.reduce(
+    (acc, age, i, arr) => acc + age / arr.length,
+    0
+  );
+
+  return average;
+};
+
+const avg1 = calcAverageHumanAge3([5, 2, 4, 1, 15, 8, 3]);
+const avg2 = calcAverageHumanAge3([16, 6, 10, 5, 6, 1, 4]);
+console.log('avg1 → ', avg1);
+console.log('avg2 → ', avg2);
