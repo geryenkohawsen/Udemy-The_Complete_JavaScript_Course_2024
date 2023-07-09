@@ -82,6 +82,21 @@ const displayMovements = movements => {
 };
 displayMovements(account1.movements);
 
+const user = 'Steven Thomas WIlliams'; // stw
+const createUsernames = function (accs) {
+  accs.forEach(acc => {
+    acc.username = acc.owner
+      .toLocaleLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+console.log(accounts);
+createUsernames(accounts);
+console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -268,31 +283,32 @@ GOOD LUCK 😀
 // checkDogsAns([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 
 /////////////////////////////////////////////////
-const eurToUsd = 1.1;
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-/**
- * using map() method
- */
-const movementUSD = movements.map(mov => mov * eurToUsd);
-console.log(movementUSD);
+// const eurToUsd = 1.1;
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-/**
- * using normal for loop
- */
-const movementsUSDfor = [];
-for (const mov of movements) {
-  movementsUSDfor.push(mov * eurToUsd);
-}
-console.log(movementsUSDfor);
+// /**
+//  * using map() method
+//  */
+// const movementUSD = movements.map(mov => mov * eurToUsd);
+// console.log(movementUSD);
 
-// original array is not mutated
-console.log('original array → ', movements);
+// /**
+//  * using normal for loop
+//  */
+// const movementsUSDfor = [];
+// for (const mov of movements) {
+//   movementsUSDfor.push(mov * eurToUsd);
+// }
+// console.log(movementsUSDfor);
 
-const movementDescriptions = movements.map(
-  (mov, i) =>
-    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
-      mov
-    )}`
-);
-console.log(movementDescriptions);
+// // original array is not mutated
+// console.log('original array → ', movements);
+
+// const movementDescriptions = movements.map(
+//   (mov, i) =>
+//     `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+//       mov
+//     )}`
+// );
+// console.log(movementDescriptions);
