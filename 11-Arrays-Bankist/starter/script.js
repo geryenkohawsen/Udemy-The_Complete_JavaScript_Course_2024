@@ -61,10 +61,13 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = movements => {
+const displayMovements = (movements, sort = false) => {
   // Empty container programmatically
   containerMovements.innerHTML = '';
-  movements.forEach((mov, i) => {
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -216,6 +219,13 @@ btnClose.addEventListener('click', function (e) {
     // Clear input fields
     inputCloseUsername.value = inputClosePin.value = '';
   }
+});
+
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 /////////////////////////////////////////////////
@@ -629,6 +639,7 @@ const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 */
 
+/*
 const arr = [[1, 2, 3], 4, 5, [6, 7, 8], 9, 10, 11, 12, 13];
 console.log(arr.flat());
 
@@ -655,3 +666,24 @@ const chainingWithFlatMap = accounts
   .flatMap(acc => acc.movements) // only goes one level deep
   .reduce((acc, moves) => acc + moves, 0);
 console.log('chainingWithFlatMap --> ', chainingWithFlatMap);
+*/
+
+// Strings
+const owners = ['Jessica Davis', 'Michael Jackson', 'John', 'John 2'];
+console.log('sort --> ', owners.sort());
+console.log('sort --> ', owners); // the sort method will mutate the original array
+
+// Numbers
+console.log('movements --> ', movements);
+console.log('movements --> ', movements.sort()); // will not sort numbers
+
+// return < 0, A, B (keep order)
+// return > 0, B, A (swtich order)
+const sortedNumber = movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (b > a) return -1;
+});
+console.log(sortedNumber);
+
+const sortedNumberBetter = movements.sort((a, b) => a - b);
+console.log(sortedNumberBetter);
