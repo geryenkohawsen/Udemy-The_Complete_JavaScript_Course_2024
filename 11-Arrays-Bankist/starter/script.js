@@ -628,3 +628,30 @@ console.log(accounts);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 */
+
+const arr = [[1, 2, 3], 4, 5, [6, 7, 8], 9, 10, 11, 12, 13];
+console.log(arr.flat());
+
+const arrDeep = [[1, 2, 3], 4, 5, [6, 7, 8], [[9, 10], 11], 12, 13];
+console.log(arrDeep.flat(2));
+
+const accountMovements = accounts.map(acc => acc.movements);
+console.log('accountMovements --> ', accountMovements);
+const allMovements = accountMovements.flat();
+console.log('allMovements --> ', allMovements);
+const overallBalance = allMovements.reduce(
+  (acc, movements) => acc + movements,
+  0
+);
+console.log('overallBalance --> ', overallBalance);
+
+const chaining = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, moves) => acc + moves, 0);
+console.log('chaining --> ', chaining);
+
+const chainingWithFlatMap = accounts
+  .flatMap(acc => acc.movements) // only goes one level deep
+  .reduce((acc, moves) => acc + moves, 0);
+console.log('chainingWithFlatMap --> ', chainingWithFlatMap);
