@@ -668,6 +668,7 @@ const chainingWithFlatMap = accounts
 console.log('chainingWithFlatMap --> ', chainingWithFlatMap);
 */
 
+/*
 // Strings
 const owners = ['Jessica Davis', 'Michael Jackson', 'John', 'John 2'];
 console.log('sort --> ', owners.sort());
@@ -687,3 +688,30 @@ console.log(sortedNumber);
 
 const sortedNumberBetter = movements.sort((a, b) => a - b);
 console.log(sortedNumberBetter);
+*/
+
+console.log([1, 2, 3, 4, 5, 6, 7]);
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+// Empty arrays + fill method
+const x = new Array(7);
+console.log(x);
+x.fill(1, 3, 5);
+console.log('x --> ', x); // will mutate the original array
+x.fill(1);
+console.log('x --> ', x);
+
+// Array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log('y --> ', y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log('z --> ', z);
+
+labelBalance.addEventListener('click', () => {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => el.textContent.replace('€', '')
+  );
+  console.log('move --> ', movementsUI);
+});
