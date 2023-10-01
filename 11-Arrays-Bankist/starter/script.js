@@ -924,3 +924,11 @@ console.log(
       dog.curFood < dog.recommendedFood * 1.1
   )
 );
+
+// 7.
+const okayDogs = dogs.filter(
+  dog =>
+    dog.curFood > dog.recommendedFood * 0.9 &&
+    dog.curFood < dog.recommendedFood * 1.1
+);
+console.log('okayDogs --> ', okayDogs);
