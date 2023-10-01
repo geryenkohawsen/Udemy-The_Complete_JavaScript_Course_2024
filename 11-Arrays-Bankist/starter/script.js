@@ -863,9 +863,35 @@ for (const dog of dogs) {
 console.log('#1 --> ', dogs);
 
 // 2.
+function checkRecommendedFoodRange(curFood, recommendedFood) {
+  if (curFood > recommendedFood * 0.9 && curFood < recommendedFood * 1.1) {
+    return 'eats okay!!';
+  } else if (curFood > recommendedFood * 1.1) {
+    return 'eats too much...';
+  } else {
+    return 'eats too little...';
+  }
+}
+
 for (const dog of dogs) {
-  if (dog.owners.includes('Sarah') && dog.curFood > dog.recommendedFood) {
-    console.log("Sarah's dogs eat too much!");
+  if (dog.owners.includes('Sarah')) {
+    console.log(
+      `Sarah's dogs ${checkRecommendedFoodRange(
+        dog.curFood,
+        dog.recommendedFood
+      )}`
+    );
     break;
   }
 }
+
+// 3.
+const eatTooMuchOwners = dogs
+  .filter(dog => dog.curFood > dog.recommendedFood * 1.1)
+  .flatMap(dog => dog.owners);
+console.log('eatTooMuchOwners --> ', eatTooMuchOwners);
+
+const eatTooLittleOwners = dogs
+  .filter(dog => dog.curFood < dog.recommendedFood * 0.9)
+  .flatMap(dog => dog.owners);
+console.log('eatTooLittleOwners --> ', eatTooLittleOwners);
