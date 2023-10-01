@@ -690,6 +690,7 @@ const sortedNumberBetter = movements.sort((a, b) => a - b);
 console.log(sortedNumberBetter);
 */
 
+/*
 console.log([1, 2, 3, 4, 5, 6, 7]);
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
@@ -715,3 +716,78 @@ labelBalance.addEventListener('click', () => {
   );
   console.log('move --> ', movementsUI);
 });
+*/
+
+///////////////////////////////////////
+// Array Methods Practice
+
+// 1.
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0);
+console.log('bankDepositSum --> ', bankDepositSum);
+
+// 2.
+const numDeposits1000Easy = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov >= 1000).length;
+console.log('numDeposits1000Easy --> ', numDeposits1000Easy);
+
+const numDeposits1000Reduce = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+console.log('numDeposits1000Reduce --> ', numDeposits1000Reduce);
+
+let a = 10;
+a++; // return value is still the original value
+++a; // this is the prefix plus plus, the return value will be the new value
+
+// 3.
+const sums = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposit += cur) : (sums.withdrawal += cur);
+      sums[cur > 0 ? 'deposit' : 'withdrawal'] += cur;
+      return sums;
+    },
+    { deposit: 0, withdrawal: 0 }
+  );
+console.log('sums --> ', sums);
+
+// 4.
+// this is a nice title -> This Is a Nice Title
+function convertTitleCase(title) {
+  const exceptions = [
+    'a',
+    'an',
+    'the',
+    'and',
+    'but',
+    'or',
+    'for',
+    'in',
+    'of',
+    'on',
+    'to',
+    'up',
+    'with',
+    'is',
+  ];
+
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word =>
+      exceptions.includes(word) ? word : word[0].toUpperCase() + word.slice(1)
+    )
+    .join(' ');
+  return capitalize(titleCase);
+}
+
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('thIS is a LONGER title'));
+console.log(convertTitleCase('tHis Is A pRetTY ranDom title'));
