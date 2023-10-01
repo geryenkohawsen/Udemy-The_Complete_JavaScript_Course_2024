@@ -895,3 +895,16 @@ const eatTooLittleOwners = dogs
   .filter(dog => dog.curFood < dog.recommendedFood * 0.9)
   .flatMap(dog => dog.owners);
 console.log('eatTooLittleOwners --> ', eatTooLittleOwners);
+
+// 4.
+console.log(
+  '4. tooMuch --> ',
+  eatTooMuchOwners.join(' and '),
+  'dogs eat too much!'
+);
+
+console.log(
+  '4. tooLittle --> ',
+  eatTooLittleOwners.join(' and '),
+  'dogs eat too little!'
+);
