@@ -853,7 +853,7 @@ const dogs = [
 ];
 
 function getRecommendedFoodPortion(weight) {
-  return Math.round(weight ** 0.75 * 28 * 1000);
+  return Math.round(weight ** 0.75 * 28);
 }
 
 // 1.
@@ -861,3 +861,11 @@ for (const dog of dogs) {
   dog.recommendedFood = getRecommendedFoodPortion(dog.weight);
 }
 console.log('#1 --> ', dogs);
+
+// 2.
+for (const dog of dogs) {
+  if (dog.owners.includes('Sarah') && dog.curFood > dog.recommendedFood) {
+    console.log("Sarah's dogs eat too much!");
+    break;
+  }
+}
