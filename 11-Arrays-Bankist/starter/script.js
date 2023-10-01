@@ -853,7 +853,7 @@ const dogs = [
 ];
 
 function getRecommendedFoodPortion(weight) {
-  return Math.round(weight ** 0.75 * 28);
+  return Math.trunc(weight ** 0.75 * 28);
 }
 
 // 1.
@@ -908,3 +908,11 @@ console.log(
   eatTooLittleOwners.join(' and '),
   'dogs eat too little!'
 );
+
+// 5.
+for (const dog of dogs) {
+  if (dog.curFood === dog.recommendedFood) console.log('5. --> ', true);
+  else console.log('5. --> ', false);
+}
+
+// 6.
