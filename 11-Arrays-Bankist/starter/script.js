@@ -910,9 +910,17 @@ console.log(
 );
 
 // 5.
-for (const dog of dogs) {
-  if (dog.curFood === dog.recommendedFood) console.log('5. --> ', true);
-  else console.log('5. --> ', false);
-}
+console.log(
+  '5. --> ',
+  dogs.some(dog => dog.curFood === dog.recommendedFood)
+);
 
 // 6.
+console.log(
+  '6. --> ',
+  dogs.some(
+    dog =>
+      dog.curFood > dog.recommendedFood * 0.9 &&
+      dog.curFood < dog.recommendedFood * 1.1
+  )
+);
