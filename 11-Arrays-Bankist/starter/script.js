@@ -718,6 +718,7 @@ labelBalance.addEventListener('click', () => {
 });
 */
 
+/*
 ///////////////////////////////////////
 // Array Methods Practice
 
@@ -791,6 +792,7 @@ function convertTitleCase(title) {
 console.log(convertTitleCase('this is a nice title'));
 console.log(convertTitleCase('thIS is a LONGER title'));
 console.log(convertTitleCase('tHis Is A pRetTY ranDom title'));
+*/
 
 ///////////////////////////////////////
 // Coding Challenge #4
@@ -849,3 +851,13 @@ const dogs = [
   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
+
+function getRecommendedFoodPortion(weight) {
+  return Math.round(weight ** 0.75 * 28 * 1000);
+}
+
+// 1.
+for (const dog of dogs) {
+  dog.recommendedFood = getRecommendedFoodPortion(dog.weight);
+}
+console.log('#1 --> ', dogs);
