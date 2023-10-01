@@ -932,3 +932,7 @@ const okayDogs = dogs.filter(
     dog.curFood < dog.recommendedFood * 1.1
 );
 console.log('okayDogs --> ', okayDogs);
+
+// 8.
+const dogsCopy = dogs.slice().sort((a, b) => a.recommendedFood - b.recommendedFood);
+console.log('dogsCopy --> ', dogsCopy);
