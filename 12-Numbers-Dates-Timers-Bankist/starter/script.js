@@ -251,3 +251,35 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+console.log(23 === 23.0);
+
+// 3/10 === 3.33333333
+console.log(0.1 + 0.2); // 0.30000000000000004
+console.log(0.1 + 0.2 === 0.3); // false
+
+// Conversion
+console.log(Number('23'));
+console.log(+'23');
+console.log(+'23' === Number('23')); // true
+
+// Parsing
+console.log(Number.parseInt('30px', 10)); // 30
+console.log(Number.parseInt('e23', 10)); // NaN
+
+console.log(Number.parseInt('   2.5rem  ')); // 2
+console.log(Number.parseFloat(' 2.3rem    ')); // 2.3
+console.log(parseFloat(' 2.3rem    ')); // not encourage to call it as a global function
+
+// isNaN() is not good for checking if a number is NaN or not
+// ONLY use for checking if a value is EXACTLY NaN values
+console.log(Number.isNaN(20)); // false
+console.log(Number.isNaN('20')); // false
+console.log(Number.isNaN(+'xx20')); // true
+console.log(Number.isNaN(23 / 0)); // false // infinity is still a number
+
+// isFinite() is better for checking if a value is a number or NaN
+console.log(Number.isFinite(20)); // true
+console.log(Number.isFinite('20')); // false
+console.log(Number.isFinite(+'xx20')); // false
+console.log(Number.isFinite(23 / 0)); // false // infinity is not finite
