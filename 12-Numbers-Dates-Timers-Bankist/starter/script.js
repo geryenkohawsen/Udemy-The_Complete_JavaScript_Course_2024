@@ -286,6 +286,7 @@ console.log(Number.isFinite(+'xx20')); // false
 console.log(Number.isFinite(23 / 0)); // false // infinity is not finite
 */
 
+/*
 console.log(Math.sqrt(25));
 console.log(25 ** (1 / 2));
 console.log(8 ** (1 / 3));
@@ -327,3 +328,26 @@ console.log((2.7).toFixed(0));
 console.log((2.7).toFixed(3));
 console.log((2.7315).toFixed(2));
 console.log(+(2.7315).toFixed(2)); // change return value back into a number
+*/
+
+console.log(5 % 2); // 1
+console.log(5 / 2); // 2.5
+
+console.log(8 % 3);
+console.log(8 / 3);
+
+const isEven = n => n % 2 === 0;
+console.log('isEven --> ', isEven(8));
+console.log('isEven --> ', isEven(1));
+console.log('isEven --> ', isEven(234));
+
+labelBalance.addEventListener('click', () => {
+  [...document.querySelectorAll('.movements__row')].forEach((row, i) => {
+    if (i !== 0 && i % 2 === 0) {
+      row.style.backgroundColor = 'salmon';
+    }
+    if (i !== 0 && i % 3 === 0) {
+      row.style.backgroundColor = 'beige';
+    }
+  });
+});
