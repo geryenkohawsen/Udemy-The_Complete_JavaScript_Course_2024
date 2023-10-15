@@ -371,6 +371,7 @@ console.log(Number('230000')); // This will work just fine
 console.log(Number('230_000')); // This will return a NaN
 */
 
+/*
 console.log(2 ** 53 - 1);
 console.log(Number.MAX_SAFE_INTEGER);
 console.log(2 ** 53 + 1);
@@ -399,3 +400,37 @@ console.log(20n == 20); // true because JS will coerces the primitive type
 // Divisions
 console.log(10n / 3n); // 3n
 console.log(10 / 3); // 3.333333333
+*/
+
+// Create a date
+const now = new Date();
+console.log(now);
+
+console.log(new Date('Aug 03 2021 15:16:17'));
+console.log(new Date('December 23, 2022'));
+console.log(new Date(account1.movementsDates[0]));
+
+const future = new Date(2035, 1, 28, 15, 16, 17);
+console.log(future);
+console.log(new Date(2035, 1, 30, 15, 16, 17)); // JS will auto correct the dates
+
+console.log(new Date(0)); // starting Epoch time
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+console.log('getFullYear --> ', future.getFullYear());
+console.log('getYear --> ', future.getYear()); // Years passed after the Epoch time
+console.log('getMonth --> ', future.getMonth());
+console.log('getDate --> ', future.getDate());
+console.log('getDay --> ', future.getDay());
+console.log('getHours --> ', future.getHours());
+console.log('getMinutes --> ', future.getMinutes());
+console.log('getSeconds --> ', future.getSeconds());
+console.log('toISOString --> ', future.toISOString());
+console.log('getTime --> ', future.getTime()); // milliseconds passed after the Epoch time
+
+const msPassed = future.getTime();
+console.log(new Date(msPassed));
+console.log('Date.now() --> ', Date.now());
+
+console.log('setFullYear --> ', future.setFullYear(2040));
+console.log('new future --> ', future);
