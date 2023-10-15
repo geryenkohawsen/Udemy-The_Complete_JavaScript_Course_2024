@@ -162,7 +162,6 @@ btnLogin.addEventListener('click', function (e) {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and message
@@ -330,6 +329,7 @@ console.log((2.7315).toFixed(2));
 console.log(+(2.7315).toFixed(2)); // change return value back into a number
 */
 
+/*
 console.log(5 % 2); // 1
 console.log(5 / 2); // 2.5
 
@@ -351,3 +351,20 @@ labelBalance.addEventListener('click', () => {
     }
   });
 });
+*/
+
+const diameter = 287_460_000_000; // Numeric separator make it easy for developer to understand large number
+console.log('diameter --> ', diameter);
+
+const price = 345_66;
+console.log('price --> ', price);
+
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
+
+const PI = 3.14_15;
+// const PIerror = 3._1415; // underscore can be only be placed IN-BETWEEN number
+console.log('PI --> ', PI);
+
+console.log(Number('230000')); // This will work just fine
+console.log(Number('230_000')); // This will return a NaN
