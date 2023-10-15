@@ -353,6 +353,7 @@ labelBalance.addEventListener('click', () => {
 });
 */
 
+/*
 const diameter = 287_460_000_000; // Numeric separator make it easy for developer to understand large number
 console.log('diameter --> ', diameter);
 
@@ -368,3 +369,33 @@ console.log('PI --> ', PI);
 
 console.log(Number('230000')); // This will work just fine
 console.log(Number('230_000')); // This will return a NaN
+*/
+
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+
+console.log(9012346598273465987412365089123651089236590125n);
+console.log(9012346598273465987412365089123651089236590125);
+console.log(BigInt(9012346598273465987412365089123651089236590125));
+console.log(BigInt(9012346598));
+
+// Operations
+console.log(10000n + 10000n);
+console.log(10000100000000000n * 10000n);
+
+const huge = 18923749871234234n;
+const num = 23;
+console.log(huge * BigInt(num));
+
+console.log(20n > 15);
+console.log(20n === 20); // false because JS will not do type coercion
+console.log(typeof 20n);
+console.log(20n == 20); // true because JS will coerces the primitive type
+
+// Divisions
+console.log(10n / 3n); // 3n
+console.log(10 / 3); // 3.333333333
