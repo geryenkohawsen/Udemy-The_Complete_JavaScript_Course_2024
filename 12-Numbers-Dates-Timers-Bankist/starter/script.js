@@ -81,21 +81,23 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-function formatMovementDate(date, noText) {
+function formatMovementDate(date, noText, locale) {
   const calcDaysPassed = (date1, date2) =>
     Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
   const dayPassed = calcDaysPassed(new Date(), date);
 
-  if (noText || dayPassed > 7) {
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  }
   if (dayPassed === 0) return 'Today';
   if (dayPassed === 1) return 'Yesterday';
   if (dayPassed <= 7) return `${dayPassed} days ago`;
+
+  if (noText || dayPassed > 7) {
+    // const day = `${date.getDate()}`.padStart(2, 0);
+    // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    // const year = date.getFullYear();
+    // return `${day}/${month}/${year}`;
+    return new Intl.DateTimeFormat(locale).format(date);
+  }
 }
 
 const displayMovements = function (acc, sort = false) {
@@ -108,7 +110,11 @@ const displayMovements = function (acc, sort = false) {
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
-    const date = formatMovementDate(new Date(acc.movementsDates[i]));
+    const date = formatMovementDate(
+      new Date(acc.movementsDates[i]),
+      false,
+      acc.locale
+    );
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
@@ -181,10 +187,6 @@ currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
-// Create current date and time
-const now = new Date();
-labelDate.textContent = formatMovementDate(now, true);
-
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -192,6 +194,33 @@ btnLogin.addEventListener('click', function (e) {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
+
+  // Create current date and time
+  const now = new Date();
+  console.log(now);
+  // labelDate.textContent = formatMovementDate(now, true);
+
+  const options = {
+    day: 'numeric',
+    // month: 'numeric',
+    // month: '2-digit',
+    month: 'long',
+    // year: '2-digit',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    weekday: 'long',
+  };
+
+  // const locale = navigator.language;
+  // console.log('locale --> ', locale);
+
+  labelDate.textContent = new Intl.DateTimeFormat(
+    currentAccount.locale,
+    options
+  ).format(now);
+  // labelDate.textContent = new Intl.DateTimeFormat('en-GB', options).format(now);
+  // labelDate.textContent = new Intl.DateTimeFormat('ar-SY', options).format(now);
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and message
@@ -474,9 +503,11 @@ console.log('setFullYear --> ', future.setFullYear(2040));
 console.log('new future --> ', future);
 */
 
+/*
 const future = new Date(2037, 10, 19, 15, 23);
 console.log('future --> ', future);
 console.log('+future --> ', +future);
 
 const days1 = calcDaysPassed(new Date(2037, 10, 19), new Date(2037, 10, 9));
 console.log('days1 --> ', days1);
+*/
