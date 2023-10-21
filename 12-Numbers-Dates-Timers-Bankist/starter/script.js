@@ -289,14 +289,16 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(() => {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    // Add loan date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // Add loan date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
   }
   inputLoanAmount.value = '';
 });
@@ -542,6 +544,7 @@ const num = 3881234.23;
 //   unit: 'celsius',
 // };
 
+/*
 const options = {
   style: 'currency',
   unit: 'celsius', // this will be ignored in currency
@@ -559,3 +562,22 @@ console.log(
   'Locale --> ',
   new Intl.NumberFormat(navigator.language, options).format(num)
 );
+*/
+
+const ingredients = ['olives', 'egg'];
+const pizzaTimer = setTimeout(
+  (ing1, ing2, ing3) => {
+    console.log(`Here is your ${ing1} ${ing2} ${ing3} pizza!`);
+  },
+  2000,
+  ...ingredients,
+  'test3'
+);
+console.log('Waiting...');
+
+if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+
+setInterval(() => {
+  const now = new Date();
+  console.log('now --> ', now);
+}, 1000);
