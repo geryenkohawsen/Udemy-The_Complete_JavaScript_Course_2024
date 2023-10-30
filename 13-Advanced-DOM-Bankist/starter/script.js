@@ -78,15 +78,16 @@ message.addEventListener('click', () => message.remove());
 message.style.backgroundColor = '#37383d';
 message.style.width = '120%';
 
-console.log(message.style.color);
-console.log(message.style.backgroundColor);
-console.log(getComputedStyle(message)); // get computed style (CSS styling that are visible on the page)
-console.log(getComputedStyle(message).color);
-console.log(getComputedStyle(message).height);
+// console.log(message.style.color);
+// console.log(message.style.backgroundColor);
+// console.log(getComputedStyle(message)); // get computed style (CSS styling that are visible on the page)
+// console.log(getComputedStyle(message).color);
+// console.log(getComputedStyle(message).height);
 
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
 
+/*
 document.documentElement.style.setProperty('--color-primary', 'salmon');
 
 // Attributes
@@ -112,3 +113,34 @@ logo.classList.toggle('ccc', 'class2');
 logo.classList.contains('ccc', 'class2');
 
 test.className = 'ccc'; // THIS WILL OVERWRITE THE CLASS
+*/
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', e => {
+  const s1coords = section1.getBoundingClientRect();
+  console.log('s1coords --> ', s1coords);
+  console.log('e.target --> ', e.target.getBoundingClientRect());
+  console.log('Current scroll (x/y) --> ', window.scrollX, window.scrollY);
+  console.log(
+    'height/width viewport --> ',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // Scrolling OLD SCHOOL
+  // window.scrollTo(
+  //   s1coords.left + window.scrollX,
+  //   s1coords.top + window.scrollY
+  // );
+
+  window.scrollTo({
+    left: s1coords.left + window.scrollX,
+    top: s1coords.top + window.scrollY,
+    behavior: 'smooth',
+  });
+
+  // Scrolling MODERN WAY
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
