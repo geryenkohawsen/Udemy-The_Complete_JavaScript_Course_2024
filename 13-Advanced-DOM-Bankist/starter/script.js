@@ -120,27 +120,40 @@ const section1 = document.querySelector('#section--1');
 
 btnScrollTo.addEventListener('click', e => {
   const s1coords = section1.getBoundingClientRect();
-  console.log('s1coords --> ', s1coords);
-  console.log('e.target --> ', e.target.getBoundingClientRect());
-  console.log('Current scroll (x/y) --> ', window.scrollX, window.scrollY);
-  console.log(
-    'height/width viewport --> ',
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
-
-  // Scrolling OLD SCHOOL
-  // window.scrollTo(
-  //   s1coords.left + window.scrollX,
-  //   s1coords.top + window.scrollY
+  // console.log('s1coords --> ', s1coords);
+  // console.log('e.target --> ', e.target.getBoundingClientRect());
+  // console.log('Current scroll (x/y) --> ', window.scrollX, window.scrollY);
+  // console.log(
+  //   'height/width viewport --> ',
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
   // );
 
-  window.scrollTo({
-    left: s1coords.left + window.scrollX,
-    top: s1coords.top + window.scrollY,
-    behavior: 'smooth',
-  });
+  // Scrolling OLD SCHOOL
+  // window.scrollTo({
+  //   left: s1coords.left + window.scrollX,
+  //   top: s1coords.top + window.scrollY,
+  //   behavior: 'smooth',
+  // });
 
   // Scrolling MODERN WAY
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+// Events and events handlers
+const h1 = document.querySelector('h1');
+
+// OLD SCHOOL WAY
+h1.onmouseenter = function (e) {
+  console.log('onmouseenter');
+};
+
+// MODERN WAY
+h1.addEventListener('mouseenter', e => console.log('addEventListener'));
+
+const alertH1 = e => {
+  alert('You hovered over H1!!');
+
+  e.target.removeEventListener('mouseenter', alertH1); // remove event listener after getting executed once
+};
+h1.addEventListener('mouseenter', alertH1);
