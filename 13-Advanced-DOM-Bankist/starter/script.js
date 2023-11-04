@@ -140,6 +140,7 @@ btnScrollTo.addEventListener('click', e => {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
+/*
 // Events and events handlers
 const h1 = document.querySelector('h1');
 
@@ -157,3 +158,35 @@ const alertH1 = e => {
   e.target.removeEventListener('mouseenter', alertH1); // remove event listener after getting executed once
 };
 h1.addEventListener('mouseenter', alertH1);
+*/
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgba(${randomInt(0, 225)},${randomInt(0, 225)},${randomInt(0, 225)})`;
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('LINK', e.target, e.currentTarget);
+  console.log(this === e.currentTarget);
+
+  // Stop propagation
+  e.stopPropagation();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('CONTAINER', e.target, e.currentTarget);
+  console.log(this === e.currentTarget);
+});
+
+document.querySelector('.nav').addEventListener(
+  'click',
+  function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('NAV', e.target, e.currentTarget);
+    console.log(this === e.currentTarget);
+  },
+  true
+);
