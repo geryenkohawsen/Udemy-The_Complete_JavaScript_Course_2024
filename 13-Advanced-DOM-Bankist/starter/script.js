@@ -2,11 +2,13 @@
 
 ///////////////////////////////////////
 // Modal window
-
+const header = document.querySelector('.header');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -27,6 +29,86 @@ overlay.addEventListener('click', closeModal);
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
+  }
+});
+
+// Creating and inserting elements
+const message = document.createElement('div'); // created but not inserted to the DOM yet
+message.classList.add('cookie-message');
+// message.textContent = 'We use cookies!'; // this is just a text
+message.innerHTML =
+  'We use cookies for improved functionality and analytics! <button class="btn btn--close-cookie">Got it!</button>'; // can be use to insert string and html elements
+
+// message element is a LIVE element
+// cannot be at multiple places at the same time
+// header.prepend(message);
+header.append(message);
+
+// header.prepend(message.cloneNode(true)); // copy a DOM element
+// header.before(message.cloneNode(true)); // copy a DOM element
+// header.after(message.cloneNode(true)); // copy a DOM element
+
+message.addEventListener('click', () => message.remove());
+
+// Styles
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+// console.log(message.style.color);
+// console.log(message.style.backgroundColor);
+// console.log(getComputedStyle(message)); // get computed style (CSS styling that are visible on the page)
+// console.log(getComputedStyle(message).color);
+// console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+btnScrollTo.addEventListener('click', e => {
+  const s1coords = section1.getBoundingClientRect();
+  // console.log('s1coords --> ', s1coords);
+  // console.log('e.target --> ', e.target.getBoundingClientRect());
+  // console.log('Current scroll (x/y) --> ', window.scrollX, window.scrollY);
+  // console.log(
+  //   'height/width viewport --> ',
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
+  // );
+
+  // Scrolling OLD SCHOOL
+  // window.scrollTo({
+  //   left: s1coords.left + window.scrollX,
+  //   top: s1coords.top + window.scrollY,
+  //   behavior: 'smooth',
+  // });
+
+  // Scrolling MODERN WAY
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+////////////////////////////////
+// Page navigation
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) { // event listener is attached to every element (not good for performance)
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+////////////////////////////////
+// Event delegation
+
+// 1. Add event listener to common parent element
+// 2. Determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // Matching strategy (hardest part of making event delegation)
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
 });
 
@@ -54,38 +136,6 @@ console.log(
   document.getElementsByClassName('.btn') // return a LIVE HTML collection
 );
 */
-
-// Creating and inserting elements
-const message = document.createElement('div'); // created but not inserted to the DOM yet
-message.classList.add('cookie-message');
-// message.textContent = 'We use cookies!'; // this is just a text
-message.innerHTML =
-  'We use cookies for improved functionality and analytics! <button class="btn btn--close-cookie">Got it!</button>'; // can be use to insert string and html elements
-
-const header = document.querySelector('.header');
-// message element is a LIVE element
-// cannot be at multiple places at the same time
-// header.prepend(message);
-header.append(message);
-
-// header.prepend(message.cloneNode(true)); // copy a DOM element
-// header.before(message.cloneNode(true)); // copy a DOM element
-// header.after(message.cloneNode(true)); // copy a DOM element
-
-message.addEventListener('click', () => message.remove());
-
-// Styles
-message.style.backgroundColor = '#37383d';
-message.style.width = '120%';
-
-// console.log(message.style.color);
-// console.log(message.style.backgroundColor);
-// console.log(getComputedStyle(message)); // get computed style (CSS styling that are visible on the page)
-// console.log(getComputedStyle(message).color);
-// console.log(getComputedStyle(message).height);
-
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
 
 /*
 document.documentElement.style.setProperty('--color-primary', 'salmon');
@@ -115,31 +165,6 @@ logo.classList.contains('ccc', 'class2');
 test.className = 'ccc'; // THIS WILL OVERWRITE THE CLASS
 */
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-
-btnScrollTo.addEventListener('click', e => {
-  const s1coords = section1.getBoundingClientRect();
-  // console.log('s1coords --> ', s1coords);
-  // console.log('e.target --> ', e.target.getBoundingClientRect());
-  // console.log('Current scroll (x/y) --> ', window.scrollX, window.scrollY);
-  // console.log(
-  //   'height/width viewport --> ',
-  //   document.documentElement.clientHeight,
-  //   document.documentElement.clientWidth
-  // );
-
-  // Scrolling OLD SCHOOL
-  // window.scrollTo({
-  //   left: s1coords.left + window.scrollX,
-  //   top: s1coords.top + window.scrollY,
-  //   behavior: 'smooth',
-  // });
-
-  // Scrolling MODERN WAY
-  section1.scrollIntoView({ behavior: 'smooth' });
-});
-
 /*
 // Events and events handlers
 const h1 = document.querySelector('h1');
@@ -160,6 +185,7 @@ const alertH1 = e => {
 h1.addEventListener('mouseenter', alertH1);
 */
 
+/*
 const randomInt = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -190,3 +216,4 @@ document.querySelector('.nav').addEventListener(
   },
   true
 );
+*/
