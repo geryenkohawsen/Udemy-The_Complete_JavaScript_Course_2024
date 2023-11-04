@@ -217,3 +217,32 @@ document.querySelector('.nav').addEventListener(
   true
 );
 */
+
+const h1 = document.querySelector('h1');
+
+// Going downwards: child
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes);
+console.log(h1.children);
+h1.firstElementChild.style.color = 'green';
+h1.lastElementChild.style.color = 'orangered';
+
+// Going upwards: parents
+console.log('parent node -->', h1.parentNode);
+console.log('parent element -->', h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+h1.closest('h1').style.background = 'var(--gradient-primary)';
+
+// Going sideways: siblings
+console.log('previous element sibling --> ', h1.previousElementSibling);
+console.log('next element sibling --> ', h1.nextElementSibling);
+console.log('previous sibling --> ', h1.previousSibling);
+console.log('next sibling --> ', h1.nextSibling);
+
+console.log('all siblings --> ', h1.parentElement.children);
+[...h1.parentElement.children].forEach(el => {
+  if (el !== h1) {
+    el.style.transform = 'scale(0.5)';
+  }
+});
