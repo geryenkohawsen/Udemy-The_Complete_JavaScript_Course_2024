@@ -157,17 +157,50 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 
 ////////////////////////////////
 // Sticky navigation
-const initialCoords = section1.getBoundingClientRect();
-window.addEventListener('scroll', function () {
-  console.log('initialCoords.top --> ', initialCoords.top);
-  console.log('window.scrollY --> ', window.scrollY);
 
-  if (window.scrollY > initialCoords.top) {
-    nav.classList.add('sticky');
-  } else {
-    nav.classList.remove('sticky');
-  }
+// const initialCoords = section1.getBoundingClientRect();
+// window.addEventListener('scroll', function () {
+//   console.log('initialCoords.top --> ', initialCoords.top);
+//   console.log('window.scrollY --> ', window.scrollY);
+
+//   if (window.scrollY > initialCoords.top) {
+//     nav.classList.add('sticky');
+//   } else {
+//     nav.classList.remove('sticky');
+//   }
+// });
+
+// function obsCallback(entries, observer) {
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// }
+
+// const obsOptions = {
+//   root: null,
+//   threshold: 0.1,
+// };
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// observer.observe(section1);
+
+const navHeight = nav.getBoundingClientRect().height;
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0, // percentage of the target's visibility the observer's callback should be executed
+  rootMargin: `-${navHeight}px`, // length of header
 });
+
+headerObserver.observe(header);
 
 ////////////////////////////////
 ////////////////////////////////
