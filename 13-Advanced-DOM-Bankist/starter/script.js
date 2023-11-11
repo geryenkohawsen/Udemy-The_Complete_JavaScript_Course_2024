@@ -475,6 +475,7 @@ console.log('all siblings --> ', h1.parentElement.children);
 });
 */
 
+/*
 document.addEventListener('DOMContentLoaded', function (e) {
   console.log('HTML parsed and DOM loaded', e, e.timeStamp);
 });
@@ -485,5 +486,7 @@ window.addEventListener('load', function (e) {
 
 window.addEventListener('beforeunload', function (e) {
   e.preventDefault();
+  console.log('Page is unload (user quit the browser tab)', e, e.timeStamp);
   e.returnValue = '';
 });
+*/
