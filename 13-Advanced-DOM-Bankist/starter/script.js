@@ -474,3 +474,16 @@ console.log('all siblings --> ', h1.parentElement.children);
   }
 });
 */
+
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('HTML parsed and DOM loaded', e, e.timeStamp);
+});
+
+window.addEventListener('load', function (e) {
+  console.log('Page fully loaded', e, e.timeStamp);
+});
+
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  e.returnValue = '';
+});
