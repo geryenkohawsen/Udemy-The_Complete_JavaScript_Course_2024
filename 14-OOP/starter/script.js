@@ -61,3 +61,27 @@ console.log(
   'gery.hasOwnProperty(species) --> ',
   gery.hasOwnProperty('species')
 );
+
+console.log('gery.__proto__ --> ', gery.__proto__);
+console.log('gery.__proto__.__proto__ --> ', gery.__proto__.__proto__); // Object.prototype is the top of the prototype chain
+console.log(
+  'gery.__proto__.__proto__.__proto__ --> ',
+  gery.__proto__.__proto__.__proto__
+);
+console.dir(Person.prototype.constructor);
+
+const arr = [1, 2, 3, 4, 1, 2, 3, 5]; // new Array === []
+console.log('arr.__proto__ --> ', arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+console.log('arr.__proto__.__proto__ --> ', arr.__proto__.__proto__);
+
+Array.prototype.unique = function () {
+  console.dir(this);
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
+console.dir(h1);
+console.dir(x => x + 1);
