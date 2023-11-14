@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 const Person = function (firstName, birthYear) {
   // Instance properties
   this.firstName = firstName;
@@ -85,6 +86,7 @@ console.log(arr.unique());
 const h1 = document.querySelector('h1');
 console.dir(h1);
 console.dir(x => x + 1);
+*/
 
 ///////////////////////////////////////
 // Coding Challenge #1
@@ -101,6 +103,7 @@ DATA CAR 2: 'Mercedes' going at 95 km/h
 GOOD LUCK 😀
 */
 
+/*
 const Car = function (make, speed) {
   this.make = make;
   this.speed = speed;
@@ -128,3 +131,40 @@ mercedes.brake();
 mercedes.brake();
 mercedes.brake();
 mercedes.accelerate();
+*/
+
+// class expression
+// const PersonCl = class {};
+
+// class declaration
+class PersonCl {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    console.log(2037 - this.birthYear); // this will be written as the prototype of the new object
+  }
+
+  // same as greet method below
+  greet2() {
+    console.log(`222 ${this.firstName}!`);
+  }
+}
+
+const jessica = new PersonCl('Jessica', 1996);
+jessica.calcAge();
+console.log(jessica.__proto__);
+console.log(jessica.__proto__ === PersonCl.prototype);
+
+// We can add directly
+PersonCl.prototype.greet = function () {
+  console.log(`Hello ${this.firstName}!`);
+};
+jessica.greet();
+jessica.greet2();
+
+// 1. Classes are NOT hoisted
+// 2. Classes are first-class citizens (can be pass into function and return from a function)
+// 3. Classes are executed in strict mode (all code inside the class will be in 'strict' mode)
