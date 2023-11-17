@@ -1,6 +1,5 @@
 'use strict';
 
-/*
 const Person = function (firstName, birthYear) {
   // Instance properties
   this.firstName = firstName;
@@ -26,6 +25,12 @@ const jack = new Person('Jack', 1997);
 console.log(matilda, jack);
 
 console.log('instanceof --> ', gery instanceof Person);
+
+Person.hey = function () {
+  console.log('Hey there!');
+  console.dir(this);
+};
+Person.hey();
 
 // Prototypes
 console.log(Person.prototype);
@@ -86,7 +91,6 @@ console.log(arr.unique());
 const h1 = document.querySelector('h1');
 console.dir(h1);
 console.dir(x => x + 1);
-*/
 
 ///////////////////////////////////////
 // Coding Challenge #1
@@ -165,6 +169,11 @@ class PersonCl {
   get fullName() {
     return this._fullName;
   }
+
+  static hey() {
+    console.log('Hey there!');
+    console.dir(this);
+  }
 }
 
 const jessica = new PersonCl('Jessica Davis', 1996);
@@ -179,6 +188,8 @@ PersonCl.prototype.greet = function () {
 };
 jessica.greet();
 jessica.greet2();
+
+PersonCl.hey();
 
 // 1. Classes are NOT hoisted
 // 2. Classes are first-class citizens (can be pass into function and return from a function)
