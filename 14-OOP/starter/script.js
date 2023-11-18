@@ -264,7 +264,7 @@ DATA CAR 1: 'Ford' going at 120 km/h
 GOOD LUCK 😀
 */
 
-class Car {
+class CarCl {
   constructor(make, speed) {
     this.make = make;
     this.speed = speed;
@@ -281,17 +281,18 @@ class Car {
   }
 
   get speedUS() {
-    console.log(`${this.make} is going ${this.speed / 1.6}km/h`);
+    return this.speed / 1.6;
   }
 
-  set speedUS(speedInMiles) {
-    this.speed = speedInMiles * 1.6;
-    console.log(`${this.make} is going ${this.speed}km/h`);
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
   }
 }
 
-const bmw = new Car('BMW', 120);
-const mercedes = new Car('Mercedes', 95);
-
-bmw.speedUS;
-bmw.speedUS = 16;
+const ford = new CarCl('Ford', 120);
+console.log(ford.speedUS);
+ford.accelerate();
+ford.accelerate();
+ford.brake();
+ford.speedUS = 50;
+console.log(ford);
