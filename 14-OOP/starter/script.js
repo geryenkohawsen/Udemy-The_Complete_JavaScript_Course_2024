@@ -137,10 +137,14 @@ mercedes.brake();
 mercedes.accelerate();
 */
 
+console.log('================================================================');
+console.log('================================================================');
+
 // class expression
 // const PersonCl = class {};
 
 // class declaration
+
 class PersonCl {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
@@ -211,3 +215,37 @@ const account = {
 console.log('account getter --> ', account.latest);
 console.log('account setter --> ', (account.latest = 50));
 console.log('movements --> ', account.movements);
+
+console.log('================================================================');
+console.log('================================================================');
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+
+  cl() {
+    console.log(this);
+  },
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven);
+steven.name = 'Steven';
+steven.birthYear = 2002;
+steven.calcAge();
+steven.cl();
+
+console.log(steven.__proto__ === PersonProto);
+
+const sarah = Object.create(PersonProto);
+sarah.init('Sarah', 1979);
+sarah.calcAge();
+sarah.cl();
+
+console.dir(sarah);
