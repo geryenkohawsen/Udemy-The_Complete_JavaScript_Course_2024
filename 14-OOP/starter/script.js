@@ -139,6 +139,7 @@ mercedes.brake();
 mercedes.accelerate();
 */
 
+/*
 console.log('================================================================');
 console.log('================================================================');
 
@@ -217,6 +218,7 @@ const account = {
 console.log('account getter --> ', account.latest);
 console.log('account setter --> ', (account.latest = 50));
 console.log('movements --> ', account.movements);
+*/
 
 console.log('================================================================');
 console.log('================================================================');
@@ -353,7 +355,7 @@ DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
 
 GOOD LUCK 😀
 */
-
+/*
 const EV = function (make, speed, charge) {
   Car.call(this, make, speed);
   this.charge = charge;
@@ -381,3 +383,59 @@ tesla.chargeBattery(90);
 console.log(tesla);
 tesla.brake();
 tesla.accelerate();
+*/
+
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    console.log(2037 - this.birthYear); // this will be written as the prototype of the new object
+  }
+
+  // same as greet method below
+  greet2() {
+    console.log(`222 ${this.fullName}!`);
+  }
+
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  set fullName(name) {
+    console.log('name --> ', name);
+    if (name.includes(' ')) this._fullName = name;
+    else console.error(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  static hey() {
+    console.log('Hey there!');
+    console.dir(this);
+  }
+}
+
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    // ALWAYS needs to happen first!
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.firstName} and I study ${this.course}`);
+  }
+
+  calcAge() {
+    console.log(`I'm ${this.fullName} and I am ${this.birthYear} years old`);
+  }
+}
+
+const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
+martha.introduce();
+martha.calcAge();
