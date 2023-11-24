@@ -220,6 +220,7 @@ console.log('account setter --> ', (account.latest = 50));
 console.log('movements --> ', account.movements);
 */
 
+/*
 console.log('================================================================');
 console.log('================================================================');
 
@@ -253,6 +254,7 @@ sarah.calcAge();
 sarah.cl();
 
 console.dir(sarah);
+/*
 
 ///////////////////////////////////////
 // Coding Challenge #2
@@ -385,6 +387,7 @@ tesla.brake();
 tesla.accelerate();
 */
 
+/*
 class PersonCl {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
@@ -439,3 +442,32 @@ class StudentCl extends PersonCl {
 const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
 martha.introduce();
 martha.calcAge();
+*/
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentProto);
+jay.init('Jay', 2010, 'Sports Science');
+jay.introduce();
+jay.calcAge();
