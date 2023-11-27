@@ -477,15 +477,17 @@ jay.calcAge();
 */
 
 class Account {
+  // Public fields
+  locale = navigator.language;
+
+  // PRIVATE fields
   #movements = [];
   #pin; // legacy code will write this._pin = pin inside the constructor
-  #locale;
 
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
     this.#pin = pin;
-    this.#locale = navigator.language;
 
     console.log(`Thanks for opening an account, ${this.owner}`);
   }
@@ -503,7 +505,7 @@ class Account {
     this.deposit(-val); // this negative should not be necessary for the user, better to abstract in the code
   }
 
-  // This is an internal method that should not be exposed
+  // This is an internal PRIVATE method that should not be exposed
   #approveLoan(val) {
     return true;
   }
@@ -513,6 +515,10 @@ class Account {
       this.deposit(val);
       console.log('Loan approved');
     }
+  }
+
+  static helper() {
+    console.log('Hello!!');
   }
 }
 
@@ -525,5 +531,8 @@ acc1.withdraw(140);
 acc1.requestLoan(1000);
 // acc1.#approveLoan(1000); // will cause error because it is a private method
 
+console.log('public methods getMovements() --> ', acc1.getMovements());
 console.log(acc1);
-console.log(acc1.pin); // Should not be accessible from outside the class
+// console.log(acc1.pin); // Should not be accessible from outside the class
+
+Account.helper();
