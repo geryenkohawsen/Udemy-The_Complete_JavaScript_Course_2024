@@ -492,6 +492,11 @@ class Account {
     console.log(`Thanks for opening an account, ${this.owner}`);
   }
 
+  // This is an internal PRIVATE method that should not be exposed
+  #approveLoan(val) {
+    return true;
+  }
+
   // Public Interface AKA an API
   getMovements() {
     return this.#movements;
@@ -499,21 +504,19 @@ class Account {
 
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
 
   withdraw(val) {
     this.deposit(-val); // this negative should not be necessary for the user, better to abstract in the code
-  }
-
-  // This is an internal PRIVATE method that should not be exposed
-  #approveLoan(val) {
-    return true;
+    return this;
   }
 
   requestLoan(val) {
     if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log('Loan approved');
+      return this;
     }
   }
 
@@ -533,6 +536,9 @@ acc1.requestLoan(1000);
 
 console.log('public methods getMovements() --> ', acc1.getMovements());
 console.log(acc1);
+Account.helper();
 // console.log(acc1.pin); // Should not be accessible from outside the class
 
-Account.helper();
+// Chaining
+acc1.deposit(250).deposit(250).withdraw(500).requestLoan(2500).withdraw(1234);
+console.log(acc1);
