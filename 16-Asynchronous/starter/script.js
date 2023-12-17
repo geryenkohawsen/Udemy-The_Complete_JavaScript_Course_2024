@@ -3,10 +3,6 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
-/*
-///////////////////////////////////////
-// https://restcountries.com/v2
-
 const renderCountry = function (data, className = '') {
   const html = `
   <article class="country ${className}">
@@ -25,6 +21,10 @@ const renderCountry = function (data, className = '') {
   countriesContainer.insertAdjacentHTML('beforeend', html);
   countriesContainer.style.opacity = 1;
 };
+
+/*
+///////////////////////////////////////
+// https://restcountries.com/v2
 
 const getCountryAndNeighbor = function (country) {
   // AJAX call country 1
@@ -63,5 +63,22 @@ const getCountryAndNeighbor = function (country) {
 getCountryAndNeighbor('usa');
 */
 
-const request = fetch(`https://restcountries.com/v2/name/portugal`);
-console.log('request → ', request);
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then(res => {
+//       console.log('res → ', res);
+//       return res.json();
+//     })
+//     .then(data => {
+//       console.log('data → ', data);
+//       renderCountry(data[0]);
+//     });
+// };
+
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(res => res.json()) // arrow function will implicitly return the promise object
+    .then(data => renderCountry(data[0]));
+};
+
+getCountryData('indonesia');
