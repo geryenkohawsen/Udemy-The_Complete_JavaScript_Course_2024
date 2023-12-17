@@ -209,6 +209,7 @@ whereAmI(19.037, 72.873);
 whereAmI(-33.933, 18.474);
 */
 
+/*
 console.log('Test start'); // 1st
 setTimeout(() => console.log('0 sec timer'), 0); // 5th (callback queue)
 Promise.resolve('Resolved promise 1').then(res => console.log(res)); // 3rd (microtask queue)
@@ -219,3 +220,36 @@ Promise.resolve('Resolved promise 2').then(res => {
 });
 
 console.log('Test end'); // 2nd
+*/
+
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log('Lottery draw is happening 🔮');
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve('You WIN!');
+    } else {
+      reject('You lost your money!');
+    }
+  }, 2000);
+});
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+// Promisifying setTimeout
+const wait = function (seconds) {
+  // timeout will never fail, so no need to reject
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(2)
+  .then(() => {
+    console.log('I waited for 2 seconds');
+    return wait(1);
+  })
+  .then(() => console.log('I waited for 1 another second'));
+
+// You can also create a promise without the constructor. It will be resolved or rejected immediately
+Promise.resolve('abc').then(x => console.log(x));
+Promise.reject(new Error('Problem!')).catch(x => console.error(x));
