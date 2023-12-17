@@ -120,6 +120,7 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 //     }); // arrow function will implicitly return the promise object
 // };
 
+/*
 const getCountryData = function (country) {
   // Country 1
 
@@ -150,6 +151,7 @@ const getCountryData = function (country) {
 btn.addEventListener('click', function () {
   getCountryData('australia');
 });
+*/
 
 ///////////////////////////////////////
 // Coding Challenge #1
@@ -222,6 +224,7 @@ Promise.resolve('Resolved promise 2').then(res => {
 console.log('Test end'); // 2nd
 */
 
+/*
 const lotteryPromise = new Promise(function (resolve, reject) {
   console.log('Lottery draw is happening 🔮');
   setTimeout(function () {
@@ -253,3 +256,48 @@ wait(2)
 // You can also create a promise without the constructor. It will be resolved or rejected immediately
 Promise.resolve('abc').then(x => console.log(x));
 Promise.reject(new Error('Problem!')).catch(x => console.error(x));
+*/
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+getPosition().then(pos => console.log(pos));
+
+const freeAPI = '640766658316374271839x31894';
+
+const whereAmI = function () {
+  getPosition()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      return fetch(`https://geocode.xyz/${lat},${lng}?json=1&auth=${freeAPI}`);
+    })
+    .then(response => {
+      console.log('response → ', response);
+      if (!response.ok)
+        throw new Error(`Problem with geocoding ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log('data → ', data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+      return fetch(`https://restcountries.com/v2/name/${data.country}`);
+    })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(`Country not found (${response.status})`);
+      return response.json();
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => {
+      console.error(`${err} 💥💥💥`);
+    });
+};
+
+btn.addEventListener('click', whereAmI);
