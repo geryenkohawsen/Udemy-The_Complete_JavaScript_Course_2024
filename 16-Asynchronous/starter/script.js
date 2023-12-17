@@ -190,6 +190,13 @@ const whereAmI = function (lat, lng) {
     .then(data => {
       console.log('data → ', data);
       console.log(`You are in ${data.city}, ${data.country}`);
+      return getJSON(
+        `https://restcountries.com/v2/name/${data.country}`,
+        'Country not found'
+      );
+    })
+    .then(data => {
+      renderCountry(data[0]);
     })
     .catch(err => {
       console.error(`${err} 💥💥💥`);
