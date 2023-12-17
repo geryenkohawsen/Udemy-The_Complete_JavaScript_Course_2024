@@ -75,6 +75,10 @@ getCountryAndNeighbor('usa');
 //     });
 // };
 
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+};
+
 const getCountryData = function (country) {
   // Country 1
   fetch(`https://restcountries.com/v2/name/${country}`)
@@ -89,7 +93,18 @@ const getCountryData = function (country) {
       return fetch(`https://restcountries.com/v2/alpha/${neighbor}`);
     })
     .then(res => res.json())
-    .then(data => renderCountry(data, 'neighbour')); // arrow function will implicitly return the promise object
+    .then(data => renderCountry(data, 'neighbour'))
+    .catch(err => {
+      console.error(`${err} 💥💥💥`);
+      renderError(`Something went wrong 💥💥💥 ${err.message}. Try again!`);
+    })
+    .finally(() => {
+      // common usecase is to hide the loading spinner
+      countriesContainer.style.opacity = 1;
+    }); // arrow function will implicitly return the promise object
 };
 
-getCountryData('indonesia');
+btn.addEventListener('click', function () {
+  getCountryData('indonesia');
+  // getCountryData('asdasdasd');
+});
