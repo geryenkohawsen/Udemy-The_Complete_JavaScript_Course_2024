@@ -3,6 +3,7 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
+/*
 ///////////////////////////////////////
 // https://restcountries.com/v2
 
@@ -60,3 +61,7 @@ const getCountryAndNeighbor = function (country) {
 
 // getCountryAndNeighbor('portugal');
 getCountryAndNeighbor('usa');
+*/
+
+const request = fetch(`https://restcountries.com/v2/name/portugal`);
+console.log('request → ', request);
