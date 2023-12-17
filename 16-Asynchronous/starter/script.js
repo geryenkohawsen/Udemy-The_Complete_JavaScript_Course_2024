@@ -79,20 +79,62 @@ const renderError = function (msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
 };
 
+const getJSON = function (url, errorMsg = 'Something went wrong') {
+  return fetch(url).then(res => {
+    if (!res.ok) throw new Error(`${errorMsg} (${res.status})`);
+    return res.json();
+  });
+};
+
+// const getCountryData = function (country) {
+//   // Country 1
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then(res => {
+//       console.log('res → ', res);
+//       if (!res.ok) throw new Error(`Country not found (${res.status})`);
+//       res.json();
+//     }) // arrow function will implicitly return the promise object
+//     .then(data => {
+//       renderCountry(data[0]);
+//       const neighbor = data[0].borders?.[0];
+
+//       if (!neighbor) return;
+
+//       // Country 2
+//       return fetch(`https://restcountries.com/v2/alpha/${neighbor}`);
+//     })
+//     .then(res => {
+//       console.log('res → ', res);
+//       if (!res.ok) throw new Error(`Country not found (${res.status})`);
+//       res.json();
+//     })
+//     .then(data => renderCountry(data, 'neighbour'))
+//     .catch(err => {
+//       console.error(`${err} 💥💥💥`);
+//       renderError(`Something went wrong 💥💥💥 ${err.message}. Try again!`);
+//     })
+//     .finally(() => {
+//       // common usecase is to hide the loading spinner
+//       countriesContainer.style.opacity = 1;
+//     }); // arrow function will implicitly return the promise object
+// };
+
 const getCountryData = function (country) {
   // Country 1
-  fetch(`https://restcountries.com/v2/name/${country}`)
-    .then(res => res.json()) // arrow function will implicitly return the promise object
+
+  getJSON(`https://restcountries.com/v2/name/${country}`, 'Country not found')
     .then(data => {
       renderCountry(data[0]);
       const neighbor = data[0].borders?.[0];
 
-      if (!neighbor) return;
+      if (!neighbor) throw new Error('No neighbor found!');
 
       // Country 2
-      return fetch(`https://restcountries.com/v2/alpha/${neighbor}`);
+      return getJSON(
+        `https://restcountries.com/v2/alpha/${neighbor}`,
+        'Country not found'
+      );
     })
-    .then(res => res.json())
     .then(data => renderCountry(data, 'neighbour'))
     .catch(err => {
       console.error(`${err} 💥💥💥`);
@@ -105,6 +147,5 @@ const getCountryData = function (country) {
 };
 
 btn.addEventListener('click', function () {
-  getCountryData('indonesia');
-  // getCountryData('asdasdasd');
+  getCountryData('australia');
 });
