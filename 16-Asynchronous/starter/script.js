@@ -347,3 +347,41 @@ const createImage = function (imgPath) {
     });
   });
 };
+
+const wait = function (seconds) {
+  // timeout will never fail, so no need to reject
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+let currentImg;
+
+createImage('img/img-1.jpg')
+  .then(img => {
+    currentImg = img;
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return wait(2);
+  })
+  .then(() => createImage('img/img-2.jpg'))
+  .then(img => {
+    currentImg = img;
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return wait(2);
+  })
+  .then(() => createImage('img/img-3.jpg'))
+  .then(img => {
+    currentImg = img;
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    console.log('FINISH!!!');
+  })
+  .catch(err => console.error(err));
