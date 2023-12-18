@@ -332,13 +332,15 @@ Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise image
 GOOD LUCK 😀
 */
 
+const imgContainer = document.querySelector('.images');
+
 const createImage = function (imgPath) {
   return new Promise(function (resolve, reject) {
     const img = document.createElement('img');
     img.src = imgPath;
 
     img.addEventListener('load', function () {
-      document.querySelector('.images').append(img);
+      imgContainer.append(img);
       resolve(img);
     });
 
@@ -360,27 +362,22 @@ let currentImg;
 createImage('img/img-1.jpg')
   .then(img => {
     currentImg = img;
+    console.log('Image 1 loaded');
     return wait(2);
   })
   .then(() => {
+    console.log('currentImg → ', currentImg);
     currentImg.style.display = 'none';
-    return wait(2);
+    console.log('Image 1 hidden');
+    return createImage('img/img-2.jpg');
   })
-  .then(() => createImage('img/img-2.jpg'))
   .then(img => {
     currentImg = img;
+    console.log('Image 2 loaded');
     return wait(2);
   })
   .then(() => {
-    currentImg.style.display = 'none';
-    return wait(2);
-  })
-  .then(() => createImage('img/img-3.jpg'))
-  .then(img => {
-    currentImg = img;
-    return wait(2);
-  })
-  .then(() => {
+    console.log('currentImg → ', currentImg);
     currentImg.style.display = 'none';
     console.log('FINISH!!!');
   })
