@@ -77,6 +77,7 @@ getCountryAndNeighbor('usa');
 
 const renderError = function (msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
+  countriesContainer.style.opacity = 1;
 };
 
 const getJSON = function (url, errorMsg = 'Something went wrong') {
@@ -404,21 +405,36 @@ const getPosition = function () {
 };
 
 const whereAmI = async function () {
-  const pos = await getPosition();
-  const { latitude: lat, longitude: lng } = pos.coords;
+  try {
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lng } = pos.coords;
 
-  const resGeo = await fetch(
-    `https://geocode.xyz/${lat},${lng}?json=1&auth=${freeAPI}`
-  );
-  const dataGeo = await resGeo.json();
-  console.log('dataGeo → ', dataGeo);
+    const resGeo = await fetch(
+      `https://geocode.xyz/${lat},${lng}?json=1&auth=${freeAPI}`
+    );
+    if (!resGeo.ok) throw new Error(`Problem with geocoding ${resGeo.status}`);
+    const dataGeo = await resGeo.json();
+    console.log('dataGeo → ', dataGeo);
 
-  const res = await fetch(
-    `https://restcountries.com/v2/name/${dataGeo.country}`
-  );
-  const data = await res.json();
-  console.log('data → ', data);
-  renderCountry(data[0]);
+    const res = await fetch(
+      `https://restcountries.com/v2/name/${dataGeo.country}`
+    );
+    if (!res.ok) throw new Error(`Country not found (${res.status})`);
+    const data = await res.json();
+    console.log('data → ', data);
+    renderCountry(data[0]);
+  } catch (err) {
+    console.error(`${err} 💥💥💥`);
+    renderError(`Something went wrong 💥💥💥 ${err.message}. Try again!`);
+  }
 };
 whereAmI();
 console.log('FIRST');
+
+// try {
+//   let y = 1;
+//   const x = 2;
+//   x = 3;
+// } catch (err) {
+//   console.error(err.message);
+// }
