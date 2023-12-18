@@ -258,6 +258,7 @@ Promise.resolve('abc').then(x => console.log(x));
 Promise.reject(new Error('Problem!')).catch(x => console.error(x));
 */
 
+/*
 const getPosition = function () {
   return new Promise(function (resolve, reject) {
     // navigator.geolocation.getCurrentPosition(
@@ -301,6 +302,7 @@ const whereAmI = function () {
 };
 
 btn.addEventListener('click', whereAmI);
+*/
 
 ///////////////////////////////////////
 // Coding Challenge #2
@@ -332,6 +334,7 @@ Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise image
 GOOD LUCK 😀
 */
 
+/*
 const imgContainer = document.querySelector('.images');
 
 const createImage = function (imgPath) {
@@ -382,3 +385,40 @@ createImage('img/img-1.jpg')
     console.log('FINISH!!!');
   })
   .catch(err => console.error(err));
+*/
+
+// const whereAmI = function (country) {
+//   const res = fetch(`https://restcountries.com/v2/name/${country}`);
+//   return res;
+// };
+// whereAmI('portugal')
+//   .then(res => res.json())
+//   .then(data => console.log(data));
+
+const freeAPI = '640766658316374271839x31894';
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const whereAmI = async function () {
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
+
+  const resGeo = await fetch(
+    `https://geocode.xyz/${lat},${lng}?json=1&auth=${freeAPI}`
+  );
+  const dataGeo = await resGeo.json();
+  console.log('dataGeo → ', dataGeo);
+
+  const res = await fetch(
+    `https://restcountries.com/v2/name/${dataGeo.country}`
+  );
+  const data = await res.json();
+  console.log('data → ', data);
+  renderCountry(data[0]);
+};
+whereAmI();
+console.log('FIRST');
