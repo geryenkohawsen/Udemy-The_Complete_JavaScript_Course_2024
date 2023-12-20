@@ -461,6 +461,7 @@ console.log('3.2: Finished getting location');
 console.log('3.2: Finished getting location');
 */
 
+/*
 const get3countries = async function (c1, c2, c3) {
   try {
     // const [data1] = await getJSON(`https://restcountries.com/v2/name/${c1}`);
@@ -480,3 +481,57 @@ const get3countries = async function (c1, c2, c3) {
 };
 
 get3countries('portugal', 'brazil', 'argentina');
+*/
+
+// Promise.race
+// Will be settled when one of the promises is fulfilled
+// A rejected promise will be returned also if it is rejected the fastest
+(async function () {
+  const fastestResponse = await Promise.race([
+    getJSON(`https://restcountries.com/v2/name/italy`),
+    getJSON(`https://restcountries.com/v2/name/indonesia`),
+    getJSON(`https://restcountries.com/v2/name/vietnam`),
+  ]);
+  console.log('fastestResponse --> ', fastestResponse[0].name);
+})();
+
+const timeout = function (ms) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error('Request took too long!'));
+    }, ms * 1000);
+  });
+};
+
+Promise.race([
+  getJSON(`https://restcountries.com/v2/name/indonesia`),
+  timeout(1),
+])
+  .then(res => console.log('res --> ', res[0]))
+  .catch(err => console.error(err));
+
+// Promise.allSettled
+// Return array of all settled promises (won't short-circuit from a rejected promise)
+Promise.allSettled([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('ANOTHER Success'),
+]).then(res => console.log('res111 --> ', res));
+
+Promise.all([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('ANOTHER Success'),
+])
+  .then(res => console.log('res111 --> ', res))
+  .catch(err => console.error(err));
+
+// Promise.any [ES2021]
+// Will return the first fulfilled promise and ignore any rejected promises
+Promise.any([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('ANOTHER Success'),
+])
+  .then(res => console.log('res111 --> ', res))
+  .catch(err => console.error(err));
