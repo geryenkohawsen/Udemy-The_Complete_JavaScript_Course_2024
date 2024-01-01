@@ -68,6 +68,7 @@ console.log(ShoppingCart2);
 console.log(ShoppingCart2.shippingCost);
 */
 
+/*
 // will not work in the browser but will work in node
 export.addToCart = function (product, quantity) {
   cart.push({ product, quantity });
@@ -78,3 +79,4 @@ export.addToCart = function (product, quantity) {
 
 // import
 const { addToCart } = require('./shoppingCart.js'); // require is the CommonJS specification that will only work in node.js
+*/
