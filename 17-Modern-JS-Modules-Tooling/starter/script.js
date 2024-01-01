@@ -41,6 +41,7 @@ const lastPost2 = await getLastPost();
 console.log('lastPost2 --> ', lastPost2);
 */
 
+/*
 const ShoppingCart2 = (function () {
   const cart = [];
   const shippingCost = 10;
@@ -65,3 +66,15 @@ ShoppingCart2.addToCart('shirt', 2);
 ShoppingCart2.addToCart('pizza', 5);
 console.log(ShoppingCart2);
 console.log(ShoppingCart2.shippingCost);
+*/
+
+// will not work in the browser but will work in node
+export.addToCart = function (product, quantity) {
+  cart.push({ product, quantity });
+  console.log(
+    `Adding ${quantity} ${product} to cart (shipping cost is ${shippingCost})`
+  );
+};
+
+// import
+const { addToCart } = require('./shoppingCart.js'); // require is the CommonJS specification that will only work in node.js
