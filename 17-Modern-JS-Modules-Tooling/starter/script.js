@@ -86,6 +86,7 @@ import cloneDeep from 'lodash-es'; //* using parcel, we don't need to use the wh
 
 const state = {
   cart: [
+    { product: 'pizza', quantity: 1 },
     { product: 'bread', quantity: 5 },
     { product: 'toast', quantity: 2 },
   ],
@@ -102,3 +103,24 @@ state.user.loggedIn = false;
 if (module.hot) {
   module.hot.accept();
 }
+
+class Person {
+  #greeting = 'Hey';
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.#greeting}, ${this.name}`);
+  }
+}
+
+const jonas = new Person('Jonas');
+
+console.log('Jonas' ?? null);
+
+console.log(state.cart.find(el => el.quantity >= 2));
+
+Promise.resolve('TEST').then(x => console.log(x));
+
+import 'core-js/stable';
+
+// Polyfilling async functions
+import 'regenerator-runtime/runtime';
