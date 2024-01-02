@@ -81,7 +81,8 @@ export.addToCart = function (product, quantity) {
 const { addToCart } = require('./shoppingCart.js'); // require is the CommonJS specification that will only work in node.js
 */
 
-import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+// import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+import cloneDeep from 'lodash-es'; //* using parcel, we don't need to use the whole path
 
 const state = {
   cart: [
@@ -97,3 +98,7 @@ console.log('stateClone --> ', stateClone);
 console.log('stateDeepClone --> ', stateDeepClone);
 
 state.user.loggedIn = false;
+
+if (module.hot) {
+  module.hot.accept();
+}
