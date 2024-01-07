@@ -1,6 +1,5 @@
 import { API_URL } from './config';
 import { getJSON } from './helpers';
-import recipeView from './views/recipeView';
 
 export const state = {
   recipe: {},
@@ -21,8 +20,8 @@ export const loadRecipe = async function (id) {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     };
-    console.log('state.recipe --> ', state.recipe);
-  } catch (error) {
-    console.error(`${error}!!!`);
+  } catch (err) {
+    console.error(`${err}!!!`);
+    throw err;
   }
 };
