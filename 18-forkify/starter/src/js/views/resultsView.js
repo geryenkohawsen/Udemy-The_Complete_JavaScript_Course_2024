@@ -7,7 +7,7 @@ class ResultsView extends View {
   _message = '';
 
   _generateMarkup() {
-    console.log('state.search.results --> ', this._data);
+    console.log('Search results --> ', this._data);
     return this._data
       .map(searchResult => this._generateMarkupPreview(searchResult))
       .join('');
