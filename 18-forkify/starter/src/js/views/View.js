@@ -13,6 +13,44 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup); // insert new recipe markup to DOM
   }
 
+  update(data) {
+    this._data = data;
+    const newMarkup = this._generateMarkup();
+
+    const newDOM = document.createRange().createContextualFragment(newMarkup); // will convert string to real DOM object (which will be a virtual DOM that is not living on the page)
+    const newElements = Array.from(newDOM.querySelectorAll('*'));
+    const curElements = Array.from(this._parentElement.querySelectorAll('*'));
+    console.log('newElements ->', newElements);
+    console.log('curElements ->', curElements);
+
+    newElements.forEach((newEl, i) => {
+      const curEl = curElements[i];
+
+      //* Update changed TEXT
+      if (
+        !newEl.isEqualNode(curEl) &&
+        newEl.firstChild?.nodeValue.trim() !== ''
+      ) {
+        console.log('newEl. --> ', newEl);
+        console.log('newEl.firstChild --> ');
+
+        curEl.textContent = newEl.textContent;
+      }
+
+      //* Update changed ATTRIBUTES
+      if (!newEl.isEqualNode(curEl)) {
+        console.log('newEl.attributes --> ', newEl.attributes);
+        console.log(
+          'Array.from(newEl.attributes) --> ',
+          Array.from(newEl.attributes)
+        );
+        Array.from(newEl.attributes).forEach(attr =>
+          curEl.setAttribute(attr.name, attr.value)
+        );
+      }
+    });
+  }
+
   _clear() {
     this._parentElement.innerHTML = '';
   }
