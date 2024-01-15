@@ -1,4 +1,4 @@
-import View from './View';
+import View from './View.js';
 import icons from 'url:../../img/icons.svg'; //* Parcel 2
 
 class PreviewView extends View {
@@ -22,7 +22,7 @@ class PreviewView extends View {
               this._data.key ? '' : 'hidden'
             }">
               <svg>
-                <use href="src/img/icons.svg#icon-user"></use>
+              <use href="${icons}#icon-user"></use>
               </svg>
             </div>
           </div>
